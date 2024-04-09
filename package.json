@@ -4,9 +4,13 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.20.2",
+    "bootstrap": "^5.2.1",
+    "sass": "^1.49.9"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+    "build:dev": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build": "node esbuild.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

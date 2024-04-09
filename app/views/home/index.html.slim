@@ -1,1 +1,4 @@
 h1 = 'DEBUNKER HOME PAGE'
+
+- if current_user.present?
+  = link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }

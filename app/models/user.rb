@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   def generate_api_key
     self.api_key = SecureRandom.hex(16)
+    save
   end
 
   def generate_free_call_tokens
