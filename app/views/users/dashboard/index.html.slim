@@ -8,7 +8,7 @@
       = t('users.dashboard.api_key')
       = @user.api_key
     .user_status__content__tokens
-      = t('users.dashboard.available_tokens', count: @user.tokens.count)
+      = t('users.dashboard.available_tokens', count: @user.available_tokens)
   .user_status__actions
     = link_to t('users.dashboard.edit_profile'), edit_user_registration_path, class: 'btn btn-primary'
     = link_to t('users.dashboard.change_password'), edit_user_registration_password_path, class: 'btn btn-primary'

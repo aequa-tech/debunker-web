@@ -34,6 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_153540) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.index ["api_key"], name: "index_users_on_api_key", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

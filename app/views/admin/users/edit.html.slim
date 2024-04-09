@@ -1,0 +1,15 @@
+h1 Edit User
+
+= @user.name
+= @user.email
+
+= form_for @user, url: admin_user_path(@user), method: :put do |f|
+  .field
+    = f.label :role
+    = f.select :role, User.roles.keys.map { |role| [role.humanize, role] }
+  .field
+    = f.label :available_tokens
+    = f.number_field :available_tokens
+
+  .actions
+    = f.submit 'Update User'

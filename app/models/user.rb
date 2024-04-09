@@ -11,11 +11,15 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
+  attr_writer :available_tokens
+
   enum role: %i[user admin]
 
   after_initialize :set_default_role, if: :new_record?
 
   def generate_call_tokens(count)
+    return if count.zero?
+
     count.times do
       token_created = false
       until token_created
@@ -33,6 +37,10 @@ class User < ApplicationRecord
   def generate_free_call_tokens
     free = ENV.fetch('FREE_TOKENS_REGISTRATION').to_i
     generate_call_tokens(free)
+  end
+
+  def available_tokens
+    tokens.count
   end
 
   private
