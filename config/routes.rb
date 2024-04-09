@@ -16,4 +16,13 @@ Rails.application.routes.draw do
 
   # Frontend section
   get 'dashboard', to: 'users/dashboard#index', as: :user_root
+
+  # Backend section
+  authenticate :user, ->(u) { u.admin? } do
+    namespace :admin do
+      mount Sidekiq::Web => '/sidekiq'
+      root 'dashboard#index'
+      resources :users
+    end
+  end
 end
