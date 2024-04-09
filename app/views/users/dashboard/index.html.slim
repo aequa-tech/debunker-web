@@ -1,0 +1,15 @@
+.user_status
+  .user_status__content
+    .user_status__content__name
+      = @user.name
+    .user_status__content__email
+      = @user.email
+    .user_status__content__api-key
+      = t('users.dashboard.api_key')
+      = @user.api_key
+    .user_status__content__tokens
+      = t('users.dashboard.available_tokens', count: @user.tokens.count)
+  .user_status__actions
+    = link_to t('users.dashboard.edit_profile'), edit_user_registration_path, class: 'btn btn-primary'
+    = link_to t('users.dashboard.change_password'), edit_user_registration_password_path, class: 'btn btn-primary'
+    = link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }
