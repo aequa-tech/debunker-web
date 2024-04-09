@@ -9,7 +9,7 @@ h1 Edit User
     = f.select :role, User.roles.keys.map { |role| [role.humanize, role] }
   .field
     = f.label :available_tokens
-    = f.number_field :available_tokens
+    = f.number_field :available_tokens, min: 0, step: 1, value: @user.available_tokens.count
 
   .actions
     = f.submit 'Update User'

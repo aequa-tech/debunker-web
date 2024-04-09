@@ -18,8 +18,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
 
   def generate_call_tokens(count)
-    return if count.zero?
-
     count.times do
       token_created = false
       until token_created
@@ -40,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def available_tokens
-    tokens.count
+    tokens.available
   end
 
   private
