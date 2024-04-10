@@ -1,0 +1,154 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+}
+
+.columns {
+  display: flex;
+}
+
+.j-between {
+  justify-content: space-between;
+}
+
+.j-around {
+  justify-content: space-around;
+}
+
+.j-center {
+  justify-content: center;
+}
+
+body {
+  background-color: #232333;
+}
+
+.centered-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-form {
+  width: 450px;
+  padding: 50px 30px;
+  background-color: #292a3e;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  &__title{
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      text-transform: uppercase;
+    }
+
+    margin-bottom: 20px;
+    text-align: center;
+    color: #dedede;
+  }
+
+  .text {
+    color: #dedede;
+  }
+
+  .actions {
+    margin: 20px 0;
+  }
+}
+
+.button-primary {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+
+  color: #dedede;
+  background-color: rgb(105,108,255);
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(92,95,234);
+  }
+}
+
+.field {
+  margin-bottom: 20px;
+  position: relative;
+
+  label {
+    display: block;
+    position: absolute;
+    font-size: 11px;
+    left: 10px;
+    top: -8px;
+    padding: 0 6px;
+
+    color: #a6a7b8;
+    background-color: #292a3e;
+  }
+
+  input {
+    background-color: transparent;
+    padding: 16px;
+    border-radius: 7px;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+
+    border: 1px solid #5a5a6e;
+    color: #a6a7b8;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #696cff;
+    }
+
+    &:hover {
+      outline: none;
+      border-color: #a6a6b8;
+    }
+
+    &:focus, &:active {
+      outline: none;
+      border-color: #696cff;
+      color: #696cff;
+    }
+  }
+
+  &--checkbox {
+    label {
+      position: relative;
+      display: inline-block;
+      padding-left: 10px;
+      font-size: 14px;
+      left: unset;
+      top: unset;
+      color: #dedede;
+    }
+
+    input {
+      width: auto;
+    }
+  }
+}
+
+a, a:visited {
+  color: #dedede;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #696cff;
+    cursor: pointer;
+  }
+}

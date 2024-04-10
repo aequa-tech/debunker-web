@@ -1,0 +1,20 @@
+.centered-section
+  .auth-form
+    .auth-form__title
+      h1 = 'Debunker Assistant'
+      .text
+        = 'Forgot your password?'
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: false
+
+      .actions
+        = f.submit "Send me reset password instructions", class: "button-primary"
+
+      .columns.j-center
+        .text.me-3
+          = "Don't have an account?"
+        = link_to "Sign up", new_registration_path(resource_name)
+
+.
