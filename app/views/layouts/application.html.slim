@@ -13,5 +13,11 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
   body
+    = render "shared/navbar"
+
     main
-      = yield
+      - if user_signed_in? && request.path != root_path
+        = render "shared/aside_navigator"
+      .content_container
+        .content
+          = yield

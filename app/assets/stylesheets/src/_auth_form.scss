@@ -1,0 +1,32 @@
+.auth-form {
+  width: 450px;
+  padding: 50px 30px;
+  background-color: #292a3e;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  &__title{
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      text-transform: uppercase;
+    }
+
+    margin-bottom: 20px;
+    text-align: center;
+    color: #dedede;
+  }
+
+  .text {
+    color: #dedede;
+  }
+
+  em {
+    color: #dedede;
+    font-size: 12px;
+  }
+
+  .actions {
+    margin: 20px 0;
+  }
+}

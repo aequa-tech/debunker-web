@@ -1,0 +1,35 @@
+.notices {
+  margin-bottom: 30px;
+}
+
+.notice {
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &--error, &--alert {
+    background-color: #ed5249;
+    color: #fff;
+  }
+
+  &--notice {
+    background-color: #60a44d;
+    color: #fff;
+  }
+
+  &--info {
+    background-color: #5d85b3;
+    color: #fff;
+  }
+
+  &__icon {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

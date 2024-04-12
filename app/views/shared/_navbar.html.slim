@@ -1,0 +1,11 @@
+header.navbar
+  .container-fluid
+    .navbar-brand
+      = link_to "Debunker Assistant", root_path, class: "navbar-item"
+    .navbar-menu
+      .navbar-end
+        - unless user_signed_in?
+          .navbar-item
+            = link_to "Sign Up", new_user_registration_path
+          .navbar-item
+            = link_to "Sign in", new_user_session_path, class: "button-primary"

@@ -1,0 +1,27 @@
+.navbar {
+  background-color: #292a3e;
+  border-bottom: 1px solid #424242;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+
+  &-brand {
+    a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 25px;
+      text-transform: uppercase;
+    }
+  }
+
+  &-item {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  .container-fluid {
+    padding: 0 20px;
+  }
+}

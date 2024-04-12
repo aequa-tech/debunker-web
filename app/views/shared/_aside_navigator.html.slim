@@ -1,0 +1,50 @@
+aside.navigator
+  ul
+    li.navigator-item
+      = link_to user_root_path do
+        .navigator-item__icon
+          = svg_tag "icons/dashboard.svg"
+        .navigator-item__text
+          = 'Dashboard'
+
+    li.natigattor-item.navigator-item--label
+      = 'Profile'
+
+    li.navigator-item
+      = link_to edit_user_registration_path do
+        .navigator-item__icon
+          = svg_tag "icons/edit.svg"
+        .navigator-item__text
+          = 'Edit Profile'
+
+    li.navigator-item
+      = link_to edit_user_registration_password_path do
+        .navigator-item__icon
+          = svg_tag "icons/password.svg"
+        .navigator-item__text
+          = 'Change Password'
+
+    li.navigator-item
+      = link_to destroy_user_session_path, data: { turbo_method: :delete } do
+        .navigator-item__icon
+          = svg_tag "icons/auth.svg"
+        .navigator-item__text
+          = 'API key'
+
+    li.navigator-item
+      = link_to destroy_user_session_path, data: { turbo_method: :delete } do
+        .navigator-item__icon
+          = svg_tag "icons/logout.svg"
+        .navigator-item__text
+          = 'Sign Out'
+
+    - if current_user.admin?
+      li.natigattor-item.navigator-item--label
+        = 'Admin'
+
+      li.navigator-item
+        = link_to admin_users_path do
+          .navigator-item__icon
+            = svg_tag "icons/users.svg"
+          .navigator-item__text
+            = 'Users'

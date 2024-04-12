@@ -1,10 +1,20 @@
 .notices
   - flash.each do |name, msg|
     .notice class="notice--#{name}"
-      i.bi.bi-chat-text
-      = msg
+      .notice__icon
+        - if name == 'notice'
+          = svg_tag 'icons/notice.svg'
+        - elsif name == 'alert'
+          = svg_tag 'icons/warning.svg'
+        - else
+          = svg_tag 'icons/notice.svg'
+      .notice__text
+        = msg
+
   - if resource
     - resource.errors.full_messages.each do |msg|
       .notice.notice--alert
-        i.bi.bi-chat-text
-        = msg
+        .notice__icon
+          = svg_tag 'icons/warning.svg'
+        .notice__text
+          = msg
