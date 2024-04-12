@@ -5,6 +5,7 @@
   font-weight: 400;
   font-size: 14px;
   text-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 .columns {
@@ -21,6 +22,27 @@
 
 .j-center {
   justify-content: center;
+}
+
+.notices {
+  margin-bottom: 30px;
+
+  .notice {
+    width: 100%;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+
+    &--error, &--alert {
+      background-color: #ed5249;
+      color: #fff;
+    }
+
+    &--notice {
+      background-color: #60a44d;
+      color: #fff;
+    }
+  }
 }
 
 body {
@@ -42,7 +64,6 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   &__title{
-
     h1 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 36px;
@@ -58,6 +79,11 @@ body {
     color: #dedede;
   }
 
+  em {
+    color: #dedede;
+    font-size: 12px;
+  }
+
   .actions {
     margin: 20px 0;
   }
@@ -68,7 +94,7 @@ body {
   padding: 8px;
   border-radius: 6px;
   border: none;
-  transition: all 0.3s ease-in-out;
+
 
   color: #dedede;
   background-color: rgb(105,108,255);
@@ -99,7 +125,6 @@ body {
     background-color: transparent;
     padding: 16px;
     border-radius: 7px;
-    transition: all 0.3s ease-in-out;
     width: 100%;
 
     border: 1px solid #5a5a6e;
@@ -145,7 +170,6 @@ body {
 a, a:visited {
   color: #dedede;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
 
   &:hover {
     color: #696cff;

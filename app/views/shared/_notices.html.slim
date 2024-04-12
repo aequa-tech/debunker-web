@@ -1,0 +1,10 @@
+.notices
+  - flash.each do |name, msg|
+    .notice class="notice--#{name}"
+      i.bi.bi-chat-text
+      = msg
+  - if resource
+    - resource.errors.full_messages.each do |msg|
+      .notice.notice--alert
+        i.bi.bi-chat-text
+        = msg

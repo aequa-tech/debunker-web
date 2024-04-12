@@ -1,0 +1,29 @@
+.centered-section
+  .auth-form
+    .auth-form__title
+      h1 = 'Debunker Assistant'
+      .text
+        = 'Sign up for an account'
+
+    = render partial: 'shared/notices', resource:
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.hidden_field :reset_password_token
+
+      .field
+        = f.label :password, "New password"
+        = f.password_field :password, autofocus: true, autocomplete: false
+        - if @minimum_password_length
+          em = "(#{@minimum_password_length} characters minimum)"
+
+      .field
+        = f.label :password_confirmation, "Confirm new password"
+        = f.password_field :password_confirmation, autocomplete: false
+
+      .actions
+        = f.submit "Change my password", class: "button-primary"
+
+      .columns.j-center
+        .text.me-3
+          = "Already have an account?"
+        = link_to "Sign in", new_session_path(resource_name)

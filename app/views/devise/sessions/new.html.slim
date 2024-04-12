@@ -4,6 +4,9 @@
       h1 = 'Debunker Assistant'
       .text
         = 'Log in to your account'
+
+    = render partial: 'shared/notices', resource:
+
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.label :email
