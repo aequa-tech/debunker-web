@@ -1,0 +1,45 @@
+= render partial: 'shared/notices'
+
+h1.content__title = t('users.api_keys.title')
+
+- if @api_keys.none?
+  = render partial: 'shared/empty_state',
+           locals: { message: t('users.api_keys.empty_state'), \
+                     action_text: t('users.api_keys.create'),
+                     action_url: users_api_keys_path }
+
+- else
+  .content__container
+    = render partial: 'shared/api_top_resume',
+             locals: { current_api_key: @current_api_key }
+
+    table.my-table
+      thead
+        tr
+          th = ApiKey.human_attribute_name(:access_token)
+          th = ApiKey.human_attribute_name(:secret_token)
+          th = ApiKey.human_attribute_name(:created_at)
+          th
+      tbody
+        - @api_keys.each do |api_key|
+          tr class="#{api_key.expired? ? 'striked' : ''}"
+            td = api_key.access_token
+            td = api_key.masked_secret
+            td = l(api_key.created_at, format: :short)
+            td
+              - if api_key.expired?
+                = ApiKey.human_attribute_name(:expired)
+                =< l(api_key.created_at, format: :short)
+              - else
+                = link_to(users_api_key_path(api_key),
+                          data: { turbo_method: :delete, tubo_confirm: t('users.api_keys.confirm') }) do
+                  = svg_tag 'icons/delete.svg'
+
+        tfoot
+          tr
+            td colspan="4"
+              == pagy_nav(@pagy)
+
+    = form_for ApiKey.new(), url: users_api_keys_path, method: :post, data: { turbo: false } do |f|
+      .empty-state__action
+        = button_tag t('users.api_keys.create'), class: 'button-primary'

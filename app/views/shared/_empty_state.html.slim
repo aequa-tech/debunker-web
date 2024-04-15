@@ -1,0 +1,13 @@
+.centered-section
+  .empty-state
+    .empty-state__icon
+      = svg_tag 'api_empty_state.svg'
+    .empty-state__title
+      h2 = t('empty_state.title')
+    .empty-state__text
+      = message
+
+    - if action_url
+      = form_for ApiKey.new(), url: action_url, method: :post, data: { turbo: false } do |f|
+        .empty-state__action
+          = button_tag action_text, class: 'button-primary'

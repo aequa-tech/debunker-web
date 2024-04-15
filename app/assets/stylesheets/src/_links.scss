@@ -17,4 +17,10 @@ a, a:visited {
       color: #dedede;
     }
   }
+
+  &[data-method="delete"], &[data-turbo-method="delete"] {
+    &:hover {
+      color: #ed5249;
+    }
+  }
 }

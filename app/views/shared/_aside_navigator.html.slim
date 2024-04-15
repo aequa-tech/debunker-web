@@ -25,11 +25,11 @@ aside.navigator
           = 'Change Password'
 
     li.navigator-item
-      = link_to destroy_user_session_path, data: { turbo_method: :delete } do
+      = link_to users_api_keys_path do
         .navigator-item__icon
           = svg_tag "icons/auth.svg"
         .navigator-item__text
-          = 'API key'
+          = 'API keys'
 
     li.navigator-item
       = link_to destroy_user_session_path, data: { turbo_method: :delete } do

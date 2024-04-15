@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   # Frontend section
   get 'dashboard', to: 'users/dashboard#index', as: :user_root
 
+  namespace :users do
+    resources :api_keys, only: %i[index create destroy]
+  end
+
   # Backend section
   authenticate :user, ->(u) { u.admin? } do
     namespace :admin do

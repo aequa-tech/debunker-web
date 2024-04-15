@@ -1,0 +1,7 @@
+= render partial: 'shared/notices'
+
+.centered-section
+  = render partial: 'shared/api_top_resume',
+           locals: { current_api_key: @current_api_key, just_created: true }
+
+  = link_to 'Torna alla dashboard', user_root_path, class: 'button-primary'

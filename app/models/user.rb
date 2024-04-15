@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :tokens, dependent: :destroy
+  has_many :api_keys, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true

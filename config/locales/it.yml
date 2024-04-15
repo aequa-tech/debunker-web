@@ -30,7 +30,45 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 it:
+  activerecord:
+    models:
+      user:
+        one: "Utente"
+        other: "Utenti"
+      api_key:
+        one: "Chiave API"
+        other: "Chiavi API"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Conferma password"
+      api_key:
+        access_token: "Token di accesso"
+        secret_token: "Secret"
+        expired_at: "Revocata il"
+        created_at: "Creato il"
   users:
+    api_keys:
+      title: "Chiavi API"
+      new: "Nuova chiave API"
+      create: "Crea una nuova chiave API"
+      expire: "Revoca chiave API"
+      confirm: "Sei sicuro di voler revocare la chiave API?"
+      expired: "Chiave API revocata"
+      not_expired: "Impossibile revocare la chiave API"
+      empty_state: "Nessuna chiave API disponibile"
+      current: "Chiave API corrente"
+      no_current: "Nessuna chiave API attiva al momento. Non è possibile utilizzare il servizio API senza una chiave attiva."
+      just_created_warning: "Attenzione! Questa è la tua chiave API. Salvala in un posto sicuro, il secret non sarà più visibile in futuro."
+
     dashboard:
       api_key: "Chiave API"
       available_tokens: "Token disponibili %{count}"
+
+  empty_state:
+    title: "Nessun dato presente"
+
+  time:
+    formats:
+      short: "%d/%m/%Y %H:%M"

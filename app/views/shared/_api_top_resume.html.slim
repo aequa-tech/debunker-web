@@ -1,0 +1,26 @@
+- just_created ||= false
+
+- if current_api_key
+  .top-resume class=(just_created ? 'top-resume--success' : '')
+    .top-resume__icon
+      = svg_tag 'icons/auth.svg'
+    h2.top-resume__title = t('users.api_keys.current')
+    - if just_created
+      h4.top-resume__subtitle = t('users.api_keys.just_created_warning')
+    p
+      strong = ApiKey.human_attribute_name(:access_token)
+      br
+      = current_api_key.access_token
+    p
+      strong = ApiKey.human_attribute_name(:secret_token)
+      br
+      - if just_created
+        = current_api_key.secret_token
+      - else
+        = current_api_key.masked_secret
+- else
+  .top-resume.top-resume--warning
+    .top-resume__icon
+      = svg_tag 'icons/auth.svg'
+    h2 = t('users.api_keys.current')
+    p = t('users.api_keys.no_current')

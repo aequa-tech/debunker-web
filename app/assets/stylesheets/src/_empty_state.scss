@@ -1,0 +1,31 @@
+.empty-state {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+
+  &__icon {
+    opacity: 0.5;
+
+    svg {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  &__title {
+    h2 {
+      margin-top: 20px;
+    }
+
+    h2, span {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+
+  &__action {
+    margin-top: 40px;
+  }
+}

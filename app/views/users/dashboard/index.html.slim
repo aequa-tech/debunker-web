@@ -1,4 +1,9 @@
+= render partial: 'shared/notices'
+
 h1.content__title = t('users.dashboard.title')
+
+= render partial: 'shared/api_top_resume',
+         locals: { current_api_key: @current_api_key }
 
 .user_status
   .user_status__content
