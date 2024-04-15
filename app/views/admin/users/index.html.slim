@@ -1,4 +1,4 @@
-table
+table.my-table
   thead
     tr
       th Id
@@ -17,5 +17,7 @@ table
           = link_to 'Edit', edit_admin_user_path(user)
           - if user.id != current_user.id
             = link_to 'Destroy', admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
-
-== pagy_nav(@pagy)
+  tfoot
+    tr
+      td colspan="5"
+        == pagy_nav(@pagy)
