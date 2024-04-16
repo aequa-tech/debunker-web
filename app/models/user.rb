@@ -6,7 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  has_many :tokens, dependent: :destroy
   has_many :api_keys, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
@@ -18,28 +17,8 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, if: :new_record?
 
-  def generate_call_tokens(count)
-    count.times do
-      token_created = false
-      until token_created
-        token = SecureRandom.hex(16)
-        token_created = tokens.create(value: token)
-      end
-    end
-  end
-
-  def generate_api_key
-    self.api_key = SecureRandom.hex(16)
-    save
-  end
-
-  def generate_free_call_tokens
-    free = ENV.fetch('FREE_TOKENS_REGISTRATION').to_i
-    generate_call_tokens(free)
-  end
-
-  def available_tokens
-    tokens.available
+  def active_api_keys
+    api_keys.active
   end
 
   private
