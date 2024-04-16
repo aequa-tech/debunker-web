@@ -1,7 +1,5 @@
 = render partial: 'shared/notices'
 
-h1.content__title = t('users.api_keys.title')
-
 - if @api_keys.none?
   = render partial: 'shared/empty_state',
            locals: { message: t('users.api_keys.empty_state'), \
@@ -10,8 +8,7 @@ h1.content__title = t('users.api_keys.title')
 
 - else
   .content__container
-    = render partial: 'shared/api_top_resume',
-             locals: { current_api_key: @current_api_key }
+    = render partial: 'shared/list_user_api_keys', locals: { user: @user }
 
     table.my-table
       thead

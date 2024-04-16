@@ -1,0 +1,8 @@
+.api-keys-container
+  - if user.active_api_keys.any?
+    - user.active_api_keys.each do |api_key|
+      = render partial: 'shared/api_top_resume',
+              locals: { api_key: }
+  - else
+    = render partial: 'shared/api_top_resume',
+            locals: { api_key: nil }

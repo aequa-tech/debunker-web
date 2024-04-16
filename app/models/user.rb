@@ -11,8 +11,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  attr_writer :available_tokens
-
   enum role: %i[user admin]
 
   after_initialize :set_default_role, if: :new_record?

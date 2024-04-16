@@ -1,19 +1,10 @@
 = render partial: 'shared/notices'
 
-h1.content__title = t('users.dashboard.title')
-
-= render partial: 'shared/api_top_resume',
-         locals: { current_api_key: @current_api_key }
-
 .user_status
   .user_status__content
     .user_status__content__name
       = @user.name
     .user_status__content__email
       = @user.email
-    .user_status__content__api-key
-      = t('users.dashboard.api_key')
-      = @user.api_key
-    .user_status__content__tokens
-      .notice.notice--info
-        = t('users.dashboard.available_tokens', count: @user.available_tokens.count)
+
+= render partial: 'shared/list_user_api_keys', locals: { user: @user }

@@ -5,13 +5,12 @@ module Users
     include Pagy::Backend
 
     def index
-      @current_api_key = @user.api_keys.active.last
       @pagy, @api_keys = pagy(@user.api_keys.order(expired_at: :desc))
     end
 
     def create
       @key_pair = ApiKey.generate_key_pair
-      @current_api_key = ApiKey.new(@key_pair)
+      @api_key = ApiKey.new(@key_pair)
 
       if @user.api_keys.create(@key_pair)
         flash[:notice] = 'API Key was successfully created'
