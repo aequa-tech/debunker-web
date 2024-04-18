@@ -7,6 +7,17 @@ aside.navigator
         .navigator-item__text
           = 'Dashboard'
 
+    - if current_user.admin?
+      li.natigattor-item.navigator-item--label
+        = 'Admin'
+
+      li.navigator-item
+        = link_to admin_users_path do
+          .navigator-item__icon
+            = svg_tag "icons/users.svg"
+          .navigator-item__text
+            = 'Users'
+
     li.natigattor-item.navigator-item--label
       = 'Profile'
 
@@ -31,20 +42,12 @@ aside.navigator
         .navigator-item__text
           = 'API keys'
 
+    li.natigattor-item.navigator-item--label
+      = 'Account'
+
     li.navigator-item
       = link_to destroy_user_session_path, data: { turbo_method: :delete } do
         .navigator-item__icon
           = svg_tag "icons/logout.svg"
         .navigator-item__text
           = 'Sign Out'
-
-    - if current_user.admin?
-      li.natigattor-item.navigator-item--label
-        = 'Admin'
-
-      li.navigator-item
-        = link_to admin_users_path do
-          .navigator-item__icon
-            = svg_tag "icons/users.svg"
-          .navigator-item__text
-            = 'Users'

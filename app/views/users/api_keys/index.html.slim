@@ -10,33 +10,38 @@
   .content__container
     = render partial: 'shared/list_user_api_keys', locals: { user: @user }
 
-    table.my-table
-      thead
-        tr
-          th = ApiKey.human_attribute_name(:access_token)
-          th = ApiKey.human_attribute_name(:secret_token)
-          th = ApiKey.human_attribute_name(:created_at)
-          th
-      tbody
-        - @api_keys.each do |api_key|
-          tr class="#{api_key.expired? ? 'striked' : ''}"
-            td = api_key.access_token
-            td = api_key.masked_secret
-            td = l(api_key.created_at, format: :short)
-            td
-              - if api_key.expired?
-                = ApiKey.human_attribute_name(:expired)
-                =< l(api_key.created_at, format: :short)
-              - else
-                = link_to(users_api_key_path(api_key),
-                          data: { turbo_method: :delete, tubo_confirm: t('users.api_keys.confirm') }) do
-                  = svg_tag 'icons/delete.svg'
+    .boxed
+      .boxed__title
+        h1 = 'Api Keys list'
 
-        tfoot
+      table.my-table
+        thead
           tr
-            td colspan="4"
-              == pagy_nav(@pagy)
+            th = ApiKey.human_attribute_name(:access_token)
+            th = ApiKey.human_attribute_name(:secret_token)
+            th = ApiKey.human_attribute_name(:created_at)
+            th
+        tbody
+          - @api_keys.each do |api_key|
+            tr class="#{api_key.expired? ? 'striked' : ''}"
+              td = api_key.access_token
+              td = api_key.masked_secret
+              td = l(api_key.created_at, format: :short)
+              td
+                - if api_key.expired?
+                  = ApiKey.human_attribute_name(:expired)
+                  =< l(api_key.created_at, format: :short)
+                - else
+                  = link_to(users_api_key_path(api_key),
+                            data: { turbo_method: :delete, tubo_confirm: t('users.api_keys.confirm') },
+                            confirm: t('users.api_keys.confirm')) do
+                    = svg_tag 'icons/delete.svg'
 
-    = form_for ApiKey.new(), url: users_api_keys_path, method: :post, data: { turbo: false } do |f|
-      .empty-state__action
-        = button_tag t('users.api_keys.create'), class: 'button-primary'
+          tfoot
+            tr
+              td colspan="4"
+                == pagy_nav(@pagy)
+
+      = form_for ApiKey.new(), url: users_api_keys_path, method: :post, data: { turbo: false } do |f|
+        .empty-state__action
+          = button_tag t('users.api_keys.create'), class: 'button-primary'

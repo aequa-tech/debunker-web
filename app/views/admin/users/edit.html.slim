@@ -1,26 +1,29 @@
-h1 Edit User
+= render partial: 'shared/notices'
 
-= @user.name
-= @user.email
+= render partial: 'shared/user_info_top_resume', locals: { user: @user }
 
-= form_for @user, url: admin_user_path(@user), method: :put do |f|
-  .field
-    = f.label :role
-    = f.select :role, User.roles.keys.map { |role| [role.humanize, role] }
+.boxed
+  .boxed__title
+    h1 = 'Edit User'
 
-  table.my-table
-    = f.fields_for :api_keys, f.object.api_keys.active do |ff|
-      tr
-        td = ff.object.access_token
-        td
-          .field
-            = ff.hidden_field :updated_at, value: Time.zone.now
-            = ff.hidden_field :id
-            = ff.label :available_tokens
-            = ff.text_field :available_tokens_number, value: ff.object.available_tokens.count
-        td
-          = link_to users_api_key_path(ff.object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do
-            = svg_tag 'icons/delete.svg'
+  = form_for @user, url: admin_user_path(@user), method: :put do |f|
+    .field
+      = f.label :role
+      = f.select :role, User.roles.keys.map { |role| [role.humanize, role] }
 
-  .actions
-    = f.submit 'Update User'
+    table.my-table
+      = f.fields_for :api_keys, f.object.api_keys.active do |ff|
+        tr
+          td = ff.object.access_token
+          td
+            .field
+              = ff.hidden_field :updated_at, value: Time.zone.now
+              = ff.hidden_field :id
+              = ff.label :available_tokens
+              = ff.text_field :available_tokens_number, value: ff.object.available_tokens.count
+          td
+            = link_to users_api_key_path(ff.object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do
+              = svg_tag 'icons/delete.svg'
+
+    .actions
+      = f.submit 'Update User', class: 'button-primary'

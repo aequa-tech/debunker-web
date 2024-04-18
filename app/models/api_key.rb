@@ -47,6 +47,7 @@ class ApiKey < ActiveRecord::Base
 
   def expire!
     update_columns(expired_at: Time.now)
+    tokens.destroy_all
   end
 
   def expired?

@@ -1,5 +1,12 @@
 .auth-form {
   width: 450px;
+
+  &__title {
+    text-align: center;
+  }
+}
+
+.boxed, .auth-form {
   padding: 50px 30px;
   background-color: #292a3e;
   border-radius: 4px;
@@ -14,7 +21,6 @@
     }
 
     margin-bottom: 20px;
-    text-align: center;
     color: #dedede;
   }
 
