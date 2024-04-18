@@ -1,0 +1,10 @@
+
+  .top-resume.top-resume--user-info
+    .top-resume__icon
+      = svg_tag 'icons/dashboard.svg'
+
+    h2.top-resume__title = user.name
+    p
+      strong = User.human_attribute_name(:email)
+      br
+      = user.email

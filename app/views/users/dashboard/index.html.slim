@@ -1,10 +1,5 @@
 = render partial: 'shared/notices'
 
-.user_status
-  .user_status__content
-    .user_status__content__name
-      = @user.name
-    .user_status__content__email
-      = @user.email
 
+= render partial: 'shared/user_info_top_resume', locals: { user: @user }
 = render partial: 'shared/list_user_api_keys', locals: { user: @user }

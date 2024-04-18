@@ -1,7 +1,7 @@
 - just_created ||= false
 
 - if api_key
-  .top-resume class=(just_created ? 'top-resume--success' : '')
+  .top-resume.top-resume--api-key class=(just_created ? 'top-resume--success' : '')
     .top-resume__icon
       = svg_tag 'icons/auth.svg'
 

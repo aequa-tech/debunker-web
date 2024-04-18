@@ -13,7 +13,14 @@
   max-width: 600px;
   margin-bottom: 20px;
 
-  background-color: rgb(105,108,255);
+  &--api-key {
+    background-color: #696cff;
+  }
+
+  &--user-info {
+    background-color: #218cad;
+    max-width: 400px;
+  }
 
   &--success {
     background-color: #60a44d;
