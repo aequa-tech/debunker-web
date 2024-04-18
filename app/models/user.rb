@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, if: :new_record?
 
+  accepts_nested_attributes_for :api_keys
+
   def active_api_keys
     api_keys.active
   end

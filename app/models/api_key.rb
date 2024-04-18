@@ -3,9 +3,12 @@
 class ApiKey < ActiveRecord::Base
   before_create :encode_secret
   after_create :generate_free_call_tokens
+  after_update :update_available_tokens_number
 
   belongs_to :user
   has_many :tokens, dependent: :destroy
+
+  attr_writer :available_tokens_number
 
   validates :access_token, presence: true, uniqueness: true
   validates :secret_token, presence: true
@@ -55,6 +58,27 @@ class ApiKey < ActiveRecord::Base
   end
 
   private
+
+  def update_available_tokens_number
+    return unless @available_tokens_number
+    return if @available_tokens_number.to_i == available_tokens.count
+
+    if @available_tokens_number.to_i > available_tokens.count
+      add_tokens
+    else
+      remove_tokens
+    end
+  end
+
+  def add_tokens
+    token_to_generate = @available_tokens_number.to_i - available_tokens.count
+    generate_call_tokens(token_to_generate)
+  end
+
+  def remove_tokens
+    token_to_destroy = available_tokens.count - @available_tokens_number.to_i
+    available_tokens.last(token_to_destroy).each(&:destroy)
+  end
 
   def generate_call_tokens(count)
     count.times do
