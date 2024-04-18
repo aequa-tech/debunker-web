@@ -11,7 +11,16 @@
       background: transparent;
       color: white;
       padding: 15px;
-      border: 1px solid #424242;
+      border-top: 1px solid #424242;
+      border-bottom: 1px solid #424242;
+
+      &:first-child {
+        border-left: 1px solid #424242;
+      }
+
+      &:last-child {
+        border-right: 1px solid #424242;
+      }
 
       &:last-child {
         text-align: right;
@@ -33,7 +42,7 @@
 
   tfoot {
     td {
-      border: none;
+      border: none !important;
     }
   }
 }
