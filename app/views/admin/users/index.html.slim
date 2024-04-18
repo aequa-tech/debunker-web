@@ -14,9 +14,11 @@ table.my-table
         td = user.created_at
         td = user.updated_at
         td
-          = link_to 'Edit', edit_admin_user_path(user)
+          = link_to edit_admin_user_path(user) do
+            = svg_tag 'icons/edit.svg'
           - if user.id != current_user.id
-            = link_to 'Destroy', admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
+            = link_to admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do
+              = svg_tag 'icons/delete.svg'
   tfoot
     tr
       td colspan="5"
