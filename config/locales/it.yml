@@ -1,154 +1,141 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
+---
 it:
   activerecord:
-    models:
-      user:
-        one: "Utente"
-        other: "Utenti"
-      api_key:
-        one: "Chiave API"
-        other: "Chiavi API"
-      token:
-        one: "Token"
-        other: "Token"
     attributes:
-      user:
-        id: "ID"
-        email: "Email"
-        name: "Nome"
-        current_password: "Password attuale"
-        password: "Password"
-        password_confirmation: "Conferma password"
-        created_at: "Creato il"
-        updated_at: "Aggiornato il"
-        role: "Privilegi"
-        remember_me: "Ricordami"
       api_key:
-        available_tokens: "Token disponibili"
-        access_token: "Token di accesso"
-        secret_token: "Secret"
-        expired_at: "Revocata il"
-        created_at: "Creato il"
-
+        access_token: Token di accesso
+        available_tokens: Token disponibili
+        created_at: Creato il
+        expired_at: Revocata il
+        secret_token: Secret
+      user:
+        created_at: Creato il
+        current_password: Password attuale
+        email: Email
+        id: ID
+        name: Nome
+        password: Password
+        password_confirmation: Conferma password
+        remember_me: Ricordami
+        role: Privilegi
+        updated_at: Aggiornato il
+    models:
+      api_key:
+        one: Chiave API
+        other: Chiavi API
+      token:
+        one: Token
+        other: Token
+      user:
+        one: Utente
+        other: Utenti
+  admin:
+    api_keys:
+      delete_confirm: Sei sicuro di voler revocare la chiave API?
+    users:
+      edit:
+        title: Modifica utente
+        update: Aggiorna utente
+      index:
+        delete_confirm: Sei sicuro di voler eliminare questo utente?
+        title: Lista utenti
+      notices:
+        created: Utente creato con successo
+        deleted: Utente eliminato con successo
+        updated: Utente aggiornato con successo
   devise:
     links:
-      sign_up: "Registrati"
-      sign_in: "Accedi"
-      sign_out: "Esci"
-      no_account_yet: "Non hai ancora un account?"
-      already_have_an_account: "Hai già un account?"
-      forgot_your_password: "Hai dimenticato la password?"
-      unhappy_with_your_account: "Non sei soddisfatto?"
-      cancel_account: "Cancella account"
-      confirm_cancel_account: "Sei sicuro di voler cancellare il tuo account?"
-      back_to_dashboard: "Torna alla dashboard"
+      already_have_an_account: Hai già un account?
+      back_to_dashboard: Torna alla dashboard
+      cancel_account: Cancella account
+      confirm_cancel_account: Sei sicuro di voler cancellare il tuo account?
+      forgot_your_password: Hai dimenticato la password?
+      no_account_yet: Non hai ancora un account?
+      sign_in: Accedi
+      sign_out: Esci
+      sign_up: Registrati
+      unhappy_with_your_account: Non sei soddisfatto?
     passwords:
       edit:
-        subtilte: "Modifica password"
-        change: "Cambia password"
-        minimum_length: "La password deve contenere almeno %{count} caratteri"
-        current_password_required: "La password attuale è obbligatoria per confermare le modifiche"
-        submit: "Aggiorna password"
+        change: Cambia password
+        current_password_required: La password attuale è obbligatoria per confermare le modifiche
+        minimum_length: La password deve contenere almeno %{count} caratteri
+        submit: Aggiorna password
+        subtilte: Modifica password
       new:
-        title: "Password dimenticata?"
-        subtitle: "Inserisci la tua email per ricevere le istruzioni per resettare la password"
-        send_instructions: "Invia istruzioni per il reset della password"
+        send_instructions: Invia istruzioni per il reset della password
+        subtitle: Inserisci la tua email per ricevere le istruzioni per resettare la password
+        title: Password dimenticata?
     registrations:
-      new:
-        subtitle: "Crea un nuovo account"
-        submit: "Registrati"
       edit:
-        title: "Modifica account"
-        subtitle: "Modifica le informazioni del tuo account"
-        update: "Aggiorna account"
+        subtitle: Modifica le informazioni del tuo account
+        title: Modifica account
+        update: Aggiorna account
+      new:
+        submit: Registrati
+        subtitle: Crea un nuovo account
     sessions:
       new:
-        title: "Accedi"
-        subtitle: "Inserisci le tue credenziali per accedere"
-        submit: "Accedi"
+        submit: Accedi
+        subtitle: Inserisci le tue credenziali per accedere
+        title: Accedi
+    mailer:
+      confirmation_instructions:
+        subject: "Conferma il tuo account"
+        greeting: "Ciao %{email}!"
+        instructions: "Per confermare il tuo account clicca sul link sottostante:"
+        link: "Conferma il tuo account"
+      email_changed:
+        subject: "Email modificata"
+        greeting: "Ciao %{email}!"
+        instructions: "La tua email è stata modificata. Se non hai effettuato questa modifica, contatta il supporto."
+      password_change:
+        subject: "Password modificata"
+        greeting: "Ciao %{email}!"
+        instructions: "La tua password è stata modificata. Se non hai effettuato questa modifica, contatta il supporto."
+      reset_password_instructions:
+        subject: "Reset password"
+        greeting: "Ciao %{email}!"
+        instructions: "Per resettare la tua password clicca sul link sottostante:"
+        link: "Reset password"
+        after_link: "Se non hai richiesto il reset della password, ignora questa email. La tua password rimarrà invariata fintanto che non avrai fatto accesso tramite il link soprastante e creata una nuova."
 
-  admin:
-    users:
-      notices:
-        created: "Utente creato con successo"
-        updated: "Utente aggiornato con successo"
-        deleted: "Utente eliminato con successo"
-      index:
-        title: "Lista utenti"
-        delete_confirm: "Sei sicuro di voler eliminare questo utente?"
-      edit:
-        title: "Modifica utente"
-        update: "Aggiorna utente"
-    api_keys:
-      delete_confirm: "Sei sicuro di voler revocare la chiave API?"
-
-  navigation:
-    dashboard: "Dashboard"
-    admin:
-      title: "Amministrazione"
-      users: "Utenti"
-    profile:
-      title: "Profilo"
-      edit: "Modifica profilo"
-      change_password: "Cambia password"
-      api_keys: "Chiavi API"
-    account:
-      title: "Account"
-      sign_out: "Esci"
-
-  users:
-    api_keys:
-      notices:
-        created: "Chiave API creata con successo"
-        expired: "Chiave API revocata con successo"
-        error: "Si è verificato un errore"
-      available_tokens: "Token disponibili"
-      back_to_dashboard: 'Torna alla dashboard'
-      title: "Chiavi API"
-      new: "Nuova chiave API"
-      create: "Crea una nuova chiave API"
-      expire: "Revoca chiave API"
-      confirm: "Sei sicuro di voler revocare la chiave API?"
-      expired: "Chiave API revocata"
-      not_expired: "Impossibile revocare la chiave API"
-      empty_state: "Nessuna chiave API disponibile"
-      no_current: "Nessuna chiave API attiva al momento. Non è possibile utilizzare il servizio API senza una chiave attiva."
-      just_created_warning: "Attenzione! Questa è la tua chiave API. Salvala in un posto sicuro, il secret non sarà più visibile in futuro."
-      list_title: "Lista delle chiavi API"
 
   empty_state:
-    title: "Nessun dato presente"
+    title: Nessun dato presente
 
+  navigation:
+    account:
+      sign_out: Esci
+      title: Account
+    admin:
+      title: Amministrazione
+      users: Utenti
+    dashboard: Dashboard
+    profile:
+      api_keys: Chiavi API
+      change_password: Cambia password
+      edit: Modifica profilo
+      title: Profilo
   time:
     formats:
-      short: "%d/%m/%Y %H:%M"
+      short: '%d/%m/%Y %H:%M'
+  users:
+    api_keys:
+      available_tokens: Token disponibili
+      back_to_dashboard: Torna alla dashboard
+      confirm: Sei sicuro di voler revocare la chiave API?
+      create: Crea una nuova chiave API
+      empty_state: Nessuna chiave API disponibile
+      expire: Revoca chiave API
+      expired: Chiave API revocata
+      just_created_warning: Attenzione! Questa è la tua chiave API. Salvala in un posto sicuro, il secret non sarà più visibile in futuro.
+      list_title: Lista delle chiavi API
+      new: Nuova chiave API
+      no_current: Nessuna chiave API attiva al momento. Non è possibile utilizzare il servizio API senza una chiave attiva.
+      not_expired: Impossibile revocare la chiave API
+      notices:
+        created: Chiave API creata con successo
+        error: Si è verificato un errore
+        expired: Chiave API revocata con successo
+      title: Chiavi API

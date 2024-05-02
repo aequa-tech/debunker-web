@@ -8,6 +8,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <table style="width: 100%; background-color: whitesmoke;">
+      <tr>
+        <td style="padding: 50px">
+          <table style="width: 600px; background-color: white; margin: auto;">
+            <tr>
+              <td style="padding: 30px; background-color: #292a3e; text-align: center">
+                <img src="<%= image_url('email_logo.png') %>" alt="Logo" style="height: 30px" />
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 30px; text-align: center; font-size: 14px; font-family: 'Helvetica'">
+                <%= yield %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

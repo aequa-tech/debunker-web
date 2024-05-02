@@ -1,33 +1,141 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
+---
+it:
+  activerecord:
+    attributes:
+      api_key:
+        access_token: Access Token
+        available_tokens: Available Tokens
+        created_at: Created At
+        expired_at: Expired At
+        secret_token: Secret Token
+      user:
+        created_at: Created At
+        current_password: Current Password
+        email: Email
+        id: ID
+        name: Name
+        password: Password
+        password_confirmation: Password Confirmation
+        remember_me: Remember Me
+        role: Role
+        updated_at: Updated At
+    models:
+      api_key:
+        one: API Key
+        other: API Keys
+      token:
+        one: Token
+        other: Tokens
+      user:
+        one: User
+        other: Users
+  admin:
+    api_keys:
+      delete_confirm: Are you sure you want to revoke the API key?
+    users:
+      edit:
+        title: Edit User
+        update: Update User
+      index:
+        delete_confirm: Are you sure you want to delete this user?
+        title: User List
+      notices:
+        created: User created successfully
+        deleted: User deleted successfully
+        updated: User updated successfully
+  devise:
+    links:
+      already_have_an_account: Already have an account?
+      back_to_dashboard: Back to Dashboard
+      cancel_account: Cancel Account
+      confirm_cancel_account: Are you sure you want to cancel your account?
+      forgot_your_password: Forgot your password?
+      no_account_yet: Don't have an account yet?
+      sign_in: Sign In
+      sign_out: Sign Out
+      sign_up: Sign Up
+      unhappy_with_your_account: Not satisfied?
+    passwords:
+      edit:
+        change: Change Password
+        current_password_required: Current password is required to confirm the changes
+        minimum_length: Password must be at least %{count} characters long
+        submit: Update Password
+        subtilte: Change Password
+      new:
+        send_instructions: Send password reset instructions
+        subtitle: Enter your email to receive instructions to reset your password
+        title: Forgot Password?
+    registrations:
+      edit:
+        subtitle: Edit your account information
+        title: Edit Account
+        update: Update Account
+      new:
+        submit: Sign Up
+        subtitle: Create a new account
+    sessions:
+      new:
+        submit: Sign In
+        subtitle: Enter your credentials to sign in
+        title: Sign In
+    mailer:
+      confirmation_instructions:
+        subject: "Confirm Your Account"
+        greeting: "Hello %{email}!"
+        instructions: "To confirm your account, click the link below:"
+        link: "Confirm Your Account"
+      email_changed:
+        subject: "Email Changed"
+        greeting: "Hello %{email}!"
+        instructions: "Your email has been changed. If you didn't make this change, please contact support."
+      password_change:
+        subject: "Password Changed"
+        greeting: "Hello %{email}!"
+        instructions: "Your password has been changed. If you didn't make this change, please contact support."
+      reset_password_instructions:
+        subject: "Reset Password"
+        greeting: "Hello %{email}!"
+        instructions: "To reset your password, click the link below:"
+        link: "Reset Password"
+        after_link: "If you didn't request a password reset, please ignore this email. Your password will remain unchanged until you access the link above and create a new one."
 
-en:
-  hello: "Hello world"
+
+  empty_state:
+    title: No Data Available
+
+  navigation:
+    account:
+      sign_out: Sign Out
+      title: Account
+    admin:
+      title: Administration
+      users: Users
+    dashboard: Dashboard
+    profile:
+      api_keys: API Keys
+      change_password: Change Password
+      edit: Edit Profile
+      title: Profile
+  time:
+    formats:
+      short: '%d/%m/%Y %H:%M'
+  users:
+    api_keys:
+      available_tokens: Available Tokens
+      back_to_dashboard: Back to Dashboard
+      confirm: Are you sure you want to revoke the API key?
+      create: Create a new API key
+      empty_state: No API keys available
+      expire: Revoke API key
+      expired: API key revoked
+      just_created_warning: Attention! This is your API key. Save it in a secure place, the secret will not be visible in the future.
+      list_title: API Key List
+      new: New API Key
+      no_current: No active API key at the moment. You cannot use the API service without an active key.
+      not_expired: Unable to revoke the API key
+      notices:
+        created: API key created successfully
+        error: An error occurred
+        expired: API key revoked successfully
+      title: API Keys
