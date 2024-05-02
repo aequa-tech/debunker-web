@@ -1,7 +1,7 @@
 .centered-section
   .auth-form
     .auth-form__title
-      h1 = 'Edit your account'
+      h1 = t('devise.registrations.edit.title')
 
     = render partial: 'shared/notices', resource:
 
@@ -11,13 +11,15 @@
         = f.text_field :name, autofocus: true
 
       .actions
-        = f.submit "Update", class: "button-primary"
+        = f.submit t('devise.registrations.edit.update'), class: "button-primary"
 
       .columns.j-center
         .text.me-3
-          = "Unhappy?"
-        = link_to("Cancel my account",
+          = t('devise.links.unhappy_with_your_account')
+        = link_to(t('devise.links.cancel_account'),
                   registration_path(resource_name),
-                  data: { turbo_confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete })
+                  data: { turbo_confirm: t('devise.links.confirm_cancel_account'),
+                          turbo_confirm: t('devise.links.confirm_cancel_account'),
+                          turbo_method: :delete })
 
-  = link_to 'Torna alla dashboard', user_root_path, class: 'button-primary'
+  = link_to t('devise.links.back_to_dashboard'), user_root_path, class: 'button-primary'

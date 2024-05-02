@@ -1,10 +1,9 @@
 = render partial: 'shared/notices'
-
 = render partial: 'shared/user_info_top_resume', locals: { user: @user }
 
 .boxed
   .boxed__title
-    h1 = 'Edit User'
+    h1 = t('admin.users.edit.title')
 
   = form_for @user, url: admin_user_path(@user), method: :put do |f|
     .field
@@ -22,8 +21,9 @@
               = ff.label :available_tokens
               = ff.text_field :available_tokens_number, value: ff.object.available_tokens.count
           td
-            = link_to users_api_key_path(ff.object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do
+            = link_to users_api_key_path(ff.object),
+                      data: { turbo_method: :delete, turbo_confirm: t('admin.api_keys.delete_confirm') } do
               = svg_tag 'icons/delete.svg'
 
     .actions
-      = f.submit 'Update User', class: 'button-primary'
+      = f.submit t('admin.users.edit.update'), class: 'button-primary'

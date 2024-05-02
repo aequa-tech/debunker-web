@@ -3,7 +3,7 @@
     .auth-form__title
       h1 = 'Debunker Assistant'
       .text
-        = 'Sign up for an account'
+        = t('devise.passwords.edit.subtitle')
 
     = render partial: 'shared/notices', resource:
 
@@ -11,19 +11,19 @@
       = f.hidden_field :reset_password_token
 
       .field
-        = f.label :password, "New password"
+        = f.label :password
         = f.password_field :password, autofocus: true, autocomplete: false
         - if @minimum_password_length
-          em = "(#{@minimum_password_length} characters minimum)"
+          em = t('devise.passwords.edit.minimum_length', count: @minimum_password_length)
 
       .field
-        = f.label :password_confirmation, "Confirm new password"
+        = f.label :password_confirmation
         = f.password_field :password_confirmation, autocomplete: false
 
       .actions
-        = f.submit "Change my password", class: "button-primary"
+        = f.submit t('devise.passwords.edit.change'), class: "button-primary"
 
       .columns.j-center
         .text.me-3
-          = "Already have an account?"
+          = t('devise.links.already_have_an_account')
         = link_to "Sign in", new_session_path(resource_name)

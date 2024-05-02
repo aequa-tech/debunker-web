@@ -4,4 +4,4 @@
   = render partial: 'shared/api_top_resume',
            locals: { api_key: @api_key, just_created: true }
 
-  = link_to 'Torna alla dashboard', user_root_path, class: 'button-primary'
+  = link_to t('users.api_key.back_to_dashboard'), user_root_path, class: 'button-primary'

@@ -13,7 +13,7 @@ module Admin
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
-        redirect_to admin_users_path, notice: 'User was successfully updated.'
+        redirect_to admin_users_path, notice: I18n.t('admin.users.notices.updated')
       else
         render :edit, status: :unprocessable_entity
       end
@@ -22,7 +22,7 @@ module Admin
     def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to admin_users_path, notice: 'User was successfully destroyed.'
+      redirect_to admin_users_path, notice: I18n.t('admin.users.notices.deleted')
     end
 
     private

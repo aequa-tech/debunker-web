@@ -3,7 +3,7 @@
     .auth-form__title
       h1 = 'Debunker Assistant'
       .text
-        = 'Log in to your account'
+        = t('devise.sessions.new.subtitle')
 
     = render partial: 'shared/notices', resource:
 
@@ -22,16 +22,12 @@
             = f.check_box :remember_me
             = f.label :remember_me
         - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-          = link_to "Forgot your password?", new_password_path(resource_name)
+          = link_to t('devise.links.forgot_your_password'), new_password_path(resource_name)
 
       .actions
-        = f.submit "Log in", class: "button-primary"
+        = f.submit t('devise.sessions.new.submit'), class: "button-primary"
 
       .columns.j-center
         .text.me-3
-          = "Don't have an account?"
-        = link_to "Sign up", new_registration_path(resource_name)
-
-
-
-    / = render "devise/shared/links"
+          = t('devise.links.no_account_yet')
+        = link_to t('devise.links.sign_up'), new_registration_path(resource_name)

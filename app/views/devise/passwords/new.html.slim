@@ -3,7 +3,7 @@
     .auth-form__title
       h1 = 'Debunker Assistant'
       .text
-        = 'Forgot your password?'
+        = t('devise.passwords.new.subtitle')
 
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       .field
@@ -11,11 +11,11 @@
         = f.email_field :email, autofocus: true, autocomplete: false
 
       .actions
-        = f.submit "Send me reset password instructions", class: "button-primary"
+        = f.submit t('devise.passwords.new.send_instructions'), class: "button-primary"
 
       .columns.j-center
         .text.me-3
-          = "Don't have an account?"
-        = link_to "Sign up", new_registration_path(resource_name)
+          = t('devise.links.no_account_yet')
+        = link_to t('devise.links.sign_up'), new_registration_path(resource_name)
 
 .

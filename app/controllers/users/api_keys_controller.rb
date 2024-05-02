@@ -13,10 +13,10 @@ module Users
       @api_key = ApiKey.new(@key_pair)
 
       if @user.api_keys.create(@key_pair)
-        flash[:notice] = 'API Key was successfully created'
+        flash[:notice] = t('users.api_keys.notices.created')
         render :show, status: :ok
       else
-        redirect_to root_path, alert: 'Something went wrong'
+        redirect_to root_path, alert: t('users.api_keys.notices.error')
       end
     end
 
@@ -25,10 +25,10 @@ module Users
       @api_key.expire!
 
       if @api_key.expired?
-        flash[:notice] = 'API Key was successfully revoked'
+        flash[:notice] = t('users.api_keys.notices.expired')
         redirect_to users_api_keys_path
       else
-        redirect_to users_api_keys_path, alert: 'Something went wrong'
+        redirect_to users_api_keys_path, alert: t('users.api_keys.notices.error')
       end
     end
   end

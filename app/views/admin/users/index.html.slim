@@ -2,15 +2,15 @@
 
 .boxed
   .boxed__title
-    h1 = 'Users list'
+    h1 = t('admin.users.index.title')
 
   table.my-table
     thead
       tr
-        th Id
-        th Email
-        th Created at
-        th Updated at
+        th = User.human_attribute_name(:id)
+        th = User.human_attribute_name(:email)
+        th = User.human_attribute_name(:created_at)
+        th = User.human_attribute_name(:updated_at)
         th
     tbody
       - @users.each do |user|
@@ -23,7 +23,8 @@
             = link_to edit_admin_user_path(user) do
               = svg_tag 'icons/edit.svg'
             - if user.id != current_user.id
-              = link_to admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do
+              = link_to admin_user_path(user),
+                        data: { turbo_method: :delete, turbo_confirm: t('admin.users.index.delete_confirm') } do
                 = svg_tag 'icons/delete.svg'
     tfoot
       tr

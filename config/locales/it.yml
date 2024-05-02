@@ -38,19 +38,102 @@ it:
       api_key:
         one: "Chiave API"
         other: "Chiavi API"
+      token:
+        one: "Token"
+        other: "Token"
     attributes:
       user:
+        id: "ID"
         email: "Email"
+        name: "Nome"
+        current_password: "Password attuale"
         password: "Password"
         password_confirmation: "Conferma password"
+        created_at: "Creato il"
+        updated_at: "Aggiornato il"
+        role: "Privilegi"
+        remember_me: "Ricordami"
       api_key:
+        available_tokens: "Token disponibili"
         access_token: "Token di accesso"
         secret_token: "Secret"
         expired_at: "Revocata il"
         created_at: "Creato il"
+
+  devise:
+    links:
+      sign_up: "Registrati"
+      sign_in: "Accedi"
+      sign_out: "Esci"
+      no_account_yet: "Non hai ancora un account?"
+      already_have_an_account: "Hai già un account?"
+      forgot_your_password: "Hai dimenticato la password?"
+      unhappy_with_your_account: "Non sei soddisfatto?"
+      cancel_account: "Cancella account"
+      confirm_cancel_account: "Sei sicuro di voler cancellare il tuo account?"
+      back_to_dashboard: "Torna alla dashboard"
+    passwords:
+      edit:
+        subtilte: "Modifica password"
+        change: "Cambia password"
+        minimum_length: "La password deve contenere almeno %{count} caratteri"
+        current_password_required: "La password attuale è obbligatoria per confermare le modifiche"
+        submit: "Aggiorna password"
+      new:
+        title: "Password dimenticata?"
+        subtitle: "Inserisci la tua email per ricevere le istruzioni per resettare la password"
+        send_instructions: "Invia istruzioni per il reset della password"
+    registrations:
+      new:
+        subtitle: "Crea un nuovo account"
+        submit: "Registrati"
+      edit:
+        title: "Modifica account"
+        subtitle: "Modifica le informazioni del tuo account"
+        update: "Aggiorna account"
+    sessions:
+      new:
+        title: "Accedi"
+        subtitle: "Inserisci le tue credenziali per accedere"
+        submit: "Accedi"
+
+  admin:
+    users:
+      notices:
+        created: "Utente creato con successo"
+        updated: "Utente aggiornato con successo"
+        deleted: "Utente eliminato con successo"
+      index:
+        title: "Lista utenti"
+        delete_confirm: "Sei sicuro di voler eliminare questo utente?"
+      edit:
+        title: "Modifica utente"
+        update: "Aggiorna utente"
+    api_keys:
+      delete_confirm: "Sei sicuro di voler revocare la chiave API?"
+
+  navigation:
+    dashboard: "Dashboard"
+    admin:
+      title: "Amministrazione"
+      users: "Utenti"
+    profile:
+      title: "Profilo"
+      edit: "Modifica profilo"
+      change_password: "Cambia password"
+      api_keys: "Chiavi API"
+    account:
+      title: "Account"
+      sign_out: "Esci"
+
   users:
     api_keys:
+      notices:
+        created: "Chiave API creata con successo"
+        expired: "Chiave API revocata con successo"
+        error: "Si è verificato un errore"
       available_tokens: "Token disponibili"
+      back_to_dashboard: 'Torna alla dashboard'
       title: "Chiavi API"
       new: "Nuova chiave API"
       create: "Crea una nuova chiave API"
@@ -61,6 +144,7 @@ it:
       empty_state: "Nessuna chiave API disponibile"
       no_current: "Nessuna chiave API attiva al momento. Non è possibile utilizzare il servizio API senza una chiave attiva."
       just_created_warning: "Attenzione! Questa è la tua chiave API. Salvala in un posto sicuro, il secret non sarà più visibile in futuro."
+      list_title: "Lista delle chiavi API"
 
   empty_state:
     title: "Nessun dato presente"
