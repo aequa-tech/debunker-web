@@ -5,18 +5,21 @@ class Token < ApplicationRecord
   validates :value, presence: true, uniqueness: true
   scope :available, -> { where(used_on: nil) }
 
+  def available?
+    used_on.nil?
+  end
+
   def free!
     update_columns(used_on: nil, retries: 0, support_response_object: '')
   end
 
   def occupy!(url)
-    update_columns(used_on: url, retries: 0)
+    update_columns(used_on: url, retries: 0, support_response_object: '')
   end
 
-  def temporary_response!(payload, status)
+  def temporary_response!(payload)
     payload = payload.to_json if payload.is_a?(Hash)
-    status = status.to_i if status.is_a?(String)
-    update_columns(support_response_object: payload, success: status)
+    update_columns(support_response_object: payload)
   end
 
   def try!
@@ -24,6 +27,6 @@ class Token < ApplicationRecord
   end
 
   def consume!
-    token.destroy!
+    destroy!
   end
 end
