@@ -1,0 +1,39 @@
+name: Build Rails app
+description: Build a Rails app
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Update apt-get
+      run: sudo apt-get update -y -m
+      shell: bash
+
+    - name: Add Libraries
+      run: sudo apt-get install -y -m libvips-dev
+      shell: bash
+
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: ${{ inputs.node-version-file }}
+        cache: 'yarn'
+      if: ${{ env.node_present == 'true' }}
+
+    - name: Install JS dependencies
+      run: yarn install --prefer-offline --frozen-lockfile
+      shell: bash
+      if: ${{ env.js_modules_present == 'true' }}
+
+    - name: Build JS assets
+      run: yarn build
+      shell: bash
+      if: ${{ env.js_modules_present == 'true' }}
+
+    - name: Build CSS assets
+      run: yarn build:css
+      shell: bash
+      if: ${{ env.js_modules_present == 'true' }}

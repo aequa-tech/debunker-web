@@ -1,0 +1,128 @@
+name: Check linters and configuration
+description: Check Project's linters and configuration
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check nmp or yarn modules presence
+      id: js-modules-check
+      run: |
+        if [ -e package.json ]; then
+          echo "js_modules_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "js_modules_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Node presence
+      id: node-check
+      run: |
+        if [ -e .nvmrc ]; then
+          echo "node_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "node_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check RuboCop presence
+      id: rubocop-check
+      run: |
+        if grep -q rubocop "Gemfile"; then
+          echo "rubocop_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "rubocop_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Brakeman presence
+      id: brakeman-check
+      run: |
+        if grep -q brakeman "Gemfile"; then
+          echo "brakeman_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "brakeman_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Stylelint presence
+      id: stylelint-check
+      run: |
+        if [ "${{ steps.js-modules-check.outputs.js_modules_present }}" == "true" ]; then
+          if grep -q stylelint "package.json"; then
+            echo "stylelint_present=true" >> $GITHUB_OUTPUT
+          else
+            echo "stylelint_present=false" >> $GITHUB_OUTPUT
+          fi
+        else
+          echo "stylelint_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Slimlint presence
+      id: slimlint-check
+      run: |
+        if grep -q slim_lint "Gemfile"; then
+          echo "slimlint_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "slimlint_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Fasterer presence
+      id: fasterer-check
+      run: |
+        if grep -q fasterer "Gemfile"; then
+          echo "fasterer_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "fasterer_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Bundler-Audit presence
+      id: b-audit-check
+      run: |
+        if grep -q bundler-audit "Gemfile"; then
+          echo "b_audit_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "b_audit_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Check Capitrano presence
+      id: capistrano-check
+      run: |
+        if grep -q capistrano "Gemfile"; then
+          echo "capistrano_present=true" >> $GITHUB_OUTPUT
+        else
+          echo "capistrano_present=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Extract branch name
+      id: extract_branch
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Current environment
+      id: set_environment
+      run: |
+        if [ "${{ steps.extract_branch.outputs.branch }}" == "main" ] || [ "${{ steps.extract_branch.outputs.branch }}" == "master" ] || [ "${{ steps.extract_branch.outputs.branch }}" == "production" ]; then
+          echo "environment=production" >> $GITHUB_OUTPUT
+        else
+          echo "environment=staging" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Output variable on Github Env
+      run: |
+        echo "js_modules_present=${{ steps.js-modules-check.outputs.js_modules_present }}" >> $GITHUB_ENV
+        echo "node_present=${{ steps.node-check.outputs.node_present }}" >> $GITHUB_ENV
+        echo "rubocop_present=${{ steps.rubocop-check.outputs.rubocop_present }}" >> $GITHUB_ENV
+        echo "brakeman_present=${{ steps.brakeman-check.outputs.brakeman_present }}" >> $GITHUB_ENV
+        echo "stylelint_present=${{ steps.stylelint-check.outputs.stylelint_present }}" >> $GITHUB_ENV
+        echo "slimlint_present=${{ steps.slimlint-check.outputs.slimlint_present }}" >> $GITHUB_ENV
+        echo "fasterer_present=${{ steps.fasterer-check.outputs.fasterer_present }}" >> $GITHUB_ENV
+        echo "b_audit_present=${{ steps.b-audit-check.outputs.b_audit_present }}" >> $GITHUB_ENV
+        echo "capistrano_present=${{ steps.capistrano-check.outputs.capistrano_present }}" >> $GITHUB_ENV
+        echo "current_environment=${{ steps.set_environment.outputs.environment }}" >> $GITHUB_ENV
+      shell: bash
