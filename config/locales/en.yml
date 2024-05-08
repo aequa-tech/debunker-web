@@ -19,6 +19,9 @@ it:
         remember_me: Remember Me
         role: Role
         updated_at: Updated At
+    errors:
+      messages:
+        record_invalid: "Record is invalid"
     models:
       api_key:
         one: API Key

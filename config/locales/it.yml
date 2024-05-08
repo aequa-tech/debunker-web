@@ -19,6 +19,9 @@ it:
         remember_me: Ricordami
         role: Privilegi
         updated_at: Aggiornato il
+    errors:
+      messages:
+        record_invalid: "Il record non è valido"
     models:
       api_key:
         one: Chiave API
