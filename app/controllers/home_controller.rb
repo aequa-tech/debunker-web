@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-class HomeController < ActionController::Base
-  layout 'application'
-
+class HomeController < ApplicationController
   def index; end
 end

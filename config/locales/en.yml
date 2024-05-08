@@ -22,6 +22,21 @@ it:
     errors:
       messages:
         record_invalid: "Record is invalid"
+      models:
+        user:
+          attributes:
+            email:
+              taken: "is already taken"
+            password:
+              blank: "can't be blank"
+            password_confirmation:
+              blank: "can't be blank"
+              confirmation: "doesn't match Password"
+            current_password:
+              invalid: "is invalid"
+              blank: "can't be blank"
+            name:
+              blank: "can't be blank"
     models:
       api_key:
         one: API Key
@@ -34,7 +49,7 @@ it:
         other: Users
   admin:
     api_keys:
-      delete_confirm: Are you sure you want to revoke the API key?
+      delete_confirm: Are you sure you want to revoke the API Key?
     users:
       edit:
         title: Edit User
@@ -43,6 +58,7 @@ it:
         delete_confirm: Are you sure you want to delete this user?
         title: User List
       notices:
+        api_key_revoked: "API Key revoked successfully"
         created: User created successfully
         deleted: User deleted successfully
         updated: User updated successfully
@@ -57,11 +73,11 @@ it:
       sign_in: Sign In
       sign_out: Sign Out
       sign_up: Sign Up
-      unhappy_with_your_account: Not satisfied?
+      unhappy_with_your_account: Not satisfied with your account?
     passwords:
       edit:
         change: Change Password
-        current_password_required: Current password is required to confirm the changes
+        current_password_required: Current password is required to confirm changes
         minimum_length: Password must be at least %{count} characters long
         submit: Update Password
         subtilte: Change Password
@@ -101,11 +117,11 @@ it:
         greeting: "Hello %{email}!"
         instructions: "To reset your password, click the link below:"
         link: "Reset Password"
-        after_link: "If you didn't request a password reset, please ignore this email. Your password will remain unchanged until you access the link above and create a new one."
+        after_link: "If you didn't request a password reset, please ignore this email. Your password will remain unchanged until you access the above link and create a new one."
 
 
   empty_state:
-    title: No Data Available
+    title: No data available
 
   navigation:
     account:
@@ -122,23 +138,23 @@ it:
       title: Profile
   time:
     formats:
-      short: '%d/%m/%Y %H:%M'
+      short: '%m/%d/%Y %H:%M'
   users:
     api_keys:
       available_tokens: Available Tokens
       back_to_dashboard: Back to Dashboard
-      confirm: Are you sure you want to revoke the API key?
-      create: Create a new API key
+      confirm: Are you sure you want to revoke the API Key?
+      create: Create a new API Key
       empty_state: No API keys available
-      expire: Revoke API key
-      expired: API key revoked
-      just_created_warning: Attention! This is your API key. Save it in a secure place, the secret will not be visible in the future.
+      expire: Revoke API Key
+      expired: API Key revoked
+      just_created_warning: Warning! This is your API Key. Save it in a secure place, the secret will no longer be visible in the future.
       list_title: API Key List
       new: New API Key
-      no_current: No active API key at the moment. You cannot use the API service without an active key.
-      not_expired: Unable to revoke the API key
+      no_current: No active API Key at the moment. You cannot use the API service without an active key.
+      not_expired: Unable to revoke the API Key
       notices:
-        created: API key created successfully
+        created: API Key created successfully
         error: An error occurred
-        expired: API key revoked successfully
+        expired: API Key revoked successfully
       title: API Keys

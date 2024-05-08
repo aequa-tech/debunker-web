@@ -6,5 +6,19 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
+
+    trait :admin do
+      role { 'admin' }
+    end
+
+    trait :confirmed do
+      confirmed_at { Time.current }
+    end
+
+    trait :with_api_keys do
+      after(:create) do |user|
+        create_list(:api_key, 2, user:)
+      end
+    end
   end
 end

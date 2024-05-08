@@ -3,7 +3,7 @@
     .auth-form__title
       h1 = t('devise.registrations.edit.title')
 
-    = render partial: 'shared/notices', resource:
+    = render partial: 'shared/notices', locals: { resource: }
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .field
@@ -19,7 +19,8 @@
         = link_to(t('devise.links.cancel_account'),
                   registration_path(resource_name),
                   data: { turbo_confirm: t('devise.links.confirm_cancel_account'),
-                          turbo_confirm: t('devise.links.confirm_cancel_account'),
-                          turbo_method: :delete })
+                          confirm: t('devise.links.confirm_cancel_account'),
+                          turbo_method: :delete,
+                          method: :delete })
 
   = link_to t('devise.links.back_to_dashboard'), user_root_path, class: 'button-primary'

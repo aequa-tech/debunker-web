@@ -25,6 +25,13 @@ module Admin
       redirect_to admin_users_path, notice: I18n.t('admin.users.notices.deleted')
     end
 
+    def revoke_api_key
+      @user = User.find(params[:id])
+      @api_key = @user.api_keys.find(params[:api_key_id])
+      @api_key.expire!
+      redirect_to edit_admin_user_path(@user), notice: I18n.t('admin.users.notices.api_key_revoked')
+    end
+
     private
 
     def user_params

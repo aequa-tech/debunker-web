@@ -29,11 +29,11 @@
               td = l(api_key.created_at, format: :short)
               td
                 - if api_key.expired?
-                  = ApiKey.human_attribute_name(:expired)
+                  = ApiKey.human_attribute_name(:expired_at)
                   =< l(api_key.created_at, format: :short)
                 - else
                   = link_to(users_api_key_path(api_key),
-                            data: { turbo_method: :delete, tubo_confirm: t('users.api_keys.confirm') },
+                            data: { turbo_method: :delete, method: :delete, turbo_confirm: t('users.api_keys.confirm') },
                             confirm: t('users.api_keys.confirm')) do
                     = svg_tag 'icons/delete.svg'
 

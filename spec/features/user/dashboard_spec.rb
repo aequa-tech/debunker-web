@@ -3,43 +3,65 @@
 require 'rails_helper'
 
 RSpec.describe 'User Dashboard', type: :feature do
-  let(:user) { create(:user) }
+  context 'when user is not signed in' do
+    it 'visiting dashboard redirect to login path' do
+      visit user_root_path
+      expect(current_path).to eq new_user_session_path
+    end
 
-  before do
-    sign_in user
-    visit root_path
-  end
+    context 'when user is logged in' do
+      let(:user) { create(:user, :confirmed) }
 
-  it 'shows the user dashboard' do
-    debugger
-    expect(page).to have_content('Dashboard')
-  end
+      before do
+        sign_in user
+        visit root_path
+      end
 
-  it 'shows the user name' do
-    expect(page).to have_content(user.name)
-  end
+      it 'click in dashboard link redirect to dashboard' do
+        click_on 'Dashboard'
+        expect(current_path).to eq user_root_path
+      end
 
-  it 'shows the user email' do
-    expect(page).to have_content(user.email)
-  end
+      it 'visiting dashboard show dashboard' do
+        visit user_root_path
+        expect(current_path).to eq user_root_path
+      end
 
-  it 'shows the user role' do
-    expect(page).to have_content(user.role)
-  end
+      it 'show user-info' do
+        visit user_root_path
+        within('.top-resume--user-info') do
+          expect(page).to have_text(user.name.upcase)
+          expect(page).to have_text(user.email)
+        end
+      end
 
-  it 'shows the user created at' do
-    expect(page).to have_content(user.created_at)
-  end
+      context 'without api_keys' do
+        it 'show info about no api_keys' do
+          visit user_root_path
+          within('.api-keys-container') do
+            expect(page).to have_text(I18n.t('users.api_keys.no_current'))
+          end
+        end
+      end
 
-  it 'shows the user updated at' do
-    expect(page).to have_content(user.updated_at)
-  end
+      context 'with api_keys' do
+        let(:api_key) { create(:api_key, user:) }
+        let(:api_key2) { create(:api_key, user:) }
 
-  it 'shows the user edit link' do
-    expect(page).to have_link('Edit', href: edit_user_registration_path)
-  end
+        it 'show api_keys info' do
+          user.reload
 
-  it 'shows the user sign out link' do
-    expect(page).to have_link('Sign out', href: destroy_user_session_path)
+          visit user_root_path
+          within('.api-keys-container') do
+            user.api_keys.active.each do |api_key|
+              expect(page).to have_text(api_key.access_token)
+              expect(page).to have_text(api_key.masked_secret)
+              expect(page).to have_text(api_key.available_tokens.count.to_s)
+              expect(page).to have_text(I18n.t('users.api_keys.available_tokens'))
+            end
+          end
+        end
+      end
+    end
   end
 end

@@ -5,7 +5,7 @@
       .text
         = t('devise.sessions.new.subtitle')
 
-    = render partial: 'shared/notices', resource:
+    = render partial: 'shared/notices', locals: { resource: }
 
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field

@@ -21,8 +21,9 @@
               = ff.label :available_tokens
               = ff.text_field :available_tokens_number, value: ff.object.available_tokens.count
           td
-            = link_to users_api_key_path(ff.object),
-                      data: { turbo_method: :delete, turbo_confirm: t('admin.api_keys.delete_confirm') } do
+            = link_to revoke_api_key_admin_user_path(@user, ff.object),
+                      data: { turbo_method: :delete, method: :delete, turbo_confirm: t('admin.api_keys.delete_confirm'),
+                              confirm: t('admin.api_keys.delete_confirm') } do
               = svg_tag 'icons/delete.svg'
 
     .actions

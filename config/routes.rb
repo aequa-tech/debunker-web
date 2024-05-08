@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     namespace :admin do
       mount Sidekiq::Web => '/sidekiq'
       root 'dashboard#index'
-      resources :users
+      resources :users do
+        member do
+          delete 'revoke_api_key/:api_key_id', to: 'users#revoke_api_key', as: :revoke_api_key
+        end
+      end
     end
   end
 end

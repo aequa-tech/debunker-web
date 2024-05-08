@@ -22,6 +22,21 @@ it:
     errors:
       messages:
         record_invalid: "Il record non è valido"
+      models:
+        user:
+          attributes:
+            email:
+              taken: "è in uso"
+            password:
+              blank: "non può essere vuota"
+            password_confirmation:
+              blank: "non può essere vuota"
+              confirmation: "non corrisponde alla password"
+            current_password:
+              invalid: "non è corretta"
+              blank: "non può essere vuota"
+            name:
+              blank: "non può essere vuoto"
     models:
       api_key:
         one: Chiave API
@@ -43,6 +58,7 @@ it:
         delete_confirm: Sei sicuro di voler eliminare questo utente?
         title: Lista utenti
       notices:
+        api_key_revoked: "Chiave API revocata con successo"
         created: Utente creato con successo
         deleted: Utente eliminato con successo
         updated: Utente aggiornato con successo
