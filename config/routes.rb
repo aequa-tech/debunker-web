@@ -3,7 +3,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
   devise_scope :user do
     get 'users/password/change', to: 'users/registrations#edit_password', as: :edit_user_registration_password
