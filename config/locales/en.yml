@@ -37,6 +37,9 @@ it:
             current_password:
               invalid: "is invalid"
               blank: "can't be blank"
+            reset_password_token:
+              invalid: "is invalid"
+              blank: "can't be blank"
             name:
               blank: "can't be blank"
     models:

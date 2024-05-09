@@ -37,6 +37,9 @@ it:
             current_password:
               invalid: "non è corretta"
               blank: "non può essere vuota"
+            reset_password_token:
+              invalid: "non è valido"
+              blank: "non può essere vuoto"
             name:
               blank: "non può essere vuoto"
     models:
@@ -82,7 +85,7 @@ it:
         current_password_required: La password attuale è obbligatoria per confermare le modifiche
         minimum_length: La password deve contenere almeno %{count} caratteri
         submit: Aggiorna password
-        subtilte: Modifica password
+        subtitle: Modifica password
       new:
         send_instructions: Invia istruzioni per il reset della password
         subtitle: Inserisci la tua email per ricevere le istruzioni per resettare la password

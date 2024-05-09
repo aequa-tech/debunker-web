@@ -5,6 +5,8 @@
       .text
         = t('devise.passwords.new.subtitle')
 
+    = render partial: 'shared/notices', locals: { resource: }
+
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       .field
         = f.label :email
