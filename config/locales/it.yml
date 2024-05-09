@@ -26,9 +26,11 @@ it:
         user:
           attributes:
             email:
+              blank: "non può essere vuota"
               taken: "è in uso"
             password:
               blank: "non può essere vuota"
+              too_short: "deve contenere almeno %{count} caratteri"
             password_confirmation:
               blank: "non può essere vuota"
               confirmation: "non corrisponde alla password"

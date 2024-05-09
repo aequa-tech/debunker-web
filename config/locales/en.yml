@@ -26,9 +26,11 @@ it:
         user:
           attributes:
             email:
+              blank: "can't be blank"
               taken: "is already taken"
             password:
               blank: "can't be blank"
+              too_short: "is too short (minimum is %{count} characters)"
             password_confirmation:
               blank: "can't be blank"
               confirmation: "doesn't match Password"
