@@ -69,7 +69,7 @@ RSpec.describe 'User login', type: :feature do
           within('aside.navigator') do
             click_on I18n.t('navigation.account.sign_out')
           end
-          expect(current_path).to eq new_user_session_path
+          expect(current_path).to eq root_path
         end
       end
 

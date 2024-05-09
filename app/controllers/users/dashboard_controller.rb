@@ -1,5 +1,5 @@
 module Users
-  class DashboardController < ApplicationController
+  class DashboardController < AuthenticatedController
     def index; end
   end
 end

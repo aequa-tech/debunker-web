@@ -1,5 +1,5 @@
 module Admin
-  class DashboardController < ApplicationController
+  class DashboardController < AuthenticatedController
     def index
       redirect_to admin_users_path
     end

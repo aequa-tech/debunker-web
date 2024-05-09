@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class ApiKeysController < ApplicationController
+  class ApiKeysController < AuthenticatedController
     include Pagy::Backend
 
     def index

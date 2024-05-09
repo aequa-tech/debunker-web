@@ -6,12 +6,12 @@ header.navbar
       .navbar-end
         - if user_signed_in? && request.path == root_path
           .navbar-item
-            = link_to "Dashboard", user_root_path, class: "button-secondary"
+            = link_to I18n.t('navigation.dashboard'), user_root_path, class: "button-secondary"
         - elsif user_signed_in?
           .navbar-item
             = link_to "#{current_user.email}", user_root_path
         - else
           .navbar-item
-            = link_to "Sign Up", new_user_registration_path
+            = link_to I18n.t('devise.links.sign_up'), new_user_registration_path
           .navbar-item
-            = link_to "Sign in", new_user_session_path, class: "button-primary"
+            = link_to I18n.t('devise.links.sign_in'), new_user_session_path, class: "button-primary"

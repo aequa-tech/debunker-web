@@ -1,5 +1,5 @@
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < AuthenticatedController
     include Pagy::Backend
 
     def index

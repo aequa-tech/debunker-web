@@ -48,13 +48,20 @@ RSpec.feature 'User edit profile', type: :feature do
     end
 
     it 'redirect to login page' do
-      expect(page).to have_current_path(new_user_session_path)
+      expect(page).to have_current_path(root_path)
+    end
+
+    it 'show flash message saying that account was successfully cancelled' do
+      expect(page).to have_content(I18n.t('devise.registrations.destroyed'))
     end
 
     it 'cannot login with old credentials' do
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: user.password
-      click_on I18n.t('devise.sessions.new.submit')
+      visit new_user_session_path
+      within('form') do
+        fill_in 'user_email', with: user.email
+        fill_in 'user_password', with: user.password
+        click_on I18n.t('devise.sessions.new.submit')
+      end
       expect(page).to have_content(I18n.t('devise.failure.invalid', authentication_keys: 'email').humanize)
     end
   end
