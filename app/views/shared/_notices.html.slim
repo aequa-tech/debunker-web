@@ -20,3 +20,16 @@
           = svg_tag 'icons/warning.svg'
         .notice__text
           = msg
+
+javascript:
+  document.querySelector('.notices').querySelectorAll('.notice').forEach((notice) => {
+    if (notice.dataset.killable === null || notice.dataset.killable === undefined) {
+      notice.dataset.killable = true;
+      setTimeout(() => {
+        notice.classList.add('fade');
+        setTimeout(() => {
+          notice.remove();
+        }, 300);
+      }, 5000);
+    }
+  })
