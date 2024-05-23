@@ -1,5 +1,6 @@
 Sentry.init do |config|
   config.dsn = ENV.fetch('SENTRY_DNS') { '' }
+  config.environment = ENV.fetch('SENTRY_ENVIRONMENT') { 'production' }
   config.enabled_environments = %w[staging production]
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
