@@ -63,9 +63,8 @@ RSpec.describe 'User API keys', type: :feature do
   end
 
   context 'when user has api_keys datas' do
-    let!(:api_key) { create(:api_key, user:) }
-    let!(:api_key2) { create(:api_key, user:) }
     let!(:api_key_expired) { create(:api_key, user:, expired_at: Time.current) }
+    let!(:api_key) { create(:api_key, user:) }
 
     before do
       user.reload
@@ -151,6 +150,14 @@ RSpec.describe 'User API keys', type: :feature do
           expect(page).to have_text(user.api_keys.last.masked_secret)
           expect(page).to have_css("a[href='#{users_api_key_path(user.api_keys.last)}'][data-turbo-method='delete']")
         end
+      end
+
+      it 'only one api_key is active' do
+        expect(user.api_keys.active.count).to eq(1)
+        visit users_api_keys_path
+        click_on I18n.t('users.api_keys.create')
+        user.reload
+        expect(user.api_keys.active.count).to eq(1)
       end
     end
 

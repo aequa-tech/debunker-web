@@ -119,7 +119,7 @@ RSpec.feature 'Admin edit users', type: :feature do
 
       expect(page).to have_content(I18n.t('admin.users.notices.api_key_revoked'))
       user.reload
-      expect(user.api_keys.active.count).to eq(1)
+      expect(user.api_keys.active.count).to eq(0)
     end
   end
 end
