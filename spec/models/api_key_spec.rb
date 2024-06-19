@@ -66,8 +66,9 @@ RSpec.describe ApiKey, type: :model do
   end
 
   describe 'create a new api key' do
-    it 'create free tokens' do
-      expect(api_key.tokens.available.count).to eq(ENV.fetch('FREE_TOKENS_REGISTRATION').to_i)
+    it 'create tokens from tier' do
+      expect(api_key.tokens.available.count).to eq(user.role.tier.tokens_rate)
+      expect(api_key.reloaded_at).to eq(Date.today)
     end
   end
 end
