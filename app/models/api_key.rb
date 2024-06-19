@@ -104,6 +104,6 @@ class ApiKey < ActiveRecord::Base
   end
 
   def expire_all!
-    self.class.where(user_id:).update_all(expired_at: Time.now)
+    self.class.where(user_id:).each(&:expire!)
   end
 end
