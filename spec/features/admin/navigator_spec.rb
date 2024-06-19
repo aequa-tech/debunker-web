@@ -17,6 +17,8 @@ RSpec.describe 'Aside Navigator', type: :feature do
     within('aside.navigator') do
       expect(page).to have_content(I18n.t('navigation.admin.title').upcase)
       expect(page).to have_link(I18n.t('navigation.admin.users'), href: admin_users_path)
+      expect(page).to have_link(I18n.t('navigation.admin.roles'), href: admin_roles_path)
+      expect(page).to have_link(I18n.t('navigation.admin.tiers'), href: admin_tiers_path)
     end
   end
 end

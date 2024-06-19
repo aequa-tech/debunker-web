@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Admin edit users', type: :feature do
   let!(:admin) { create(:user, :admin, :confirmed) }
-  let!(:user) { create(:user, :with_api_keys) }
+  let!(:user) { create(:user, :with_api_key) }
 
   before do
     sign_in admin

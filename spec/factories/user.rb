@@ -16,9 +16,9 @@ FactoryBot.define do
       confirmed_at { Time.current }
     end
 
-    trait :with_api_keys do
+    trait :with_api_key do
       after(:create) do |user|
-        create_list(:api_key, 2, user:)
+        create_list(:api_key, 1, user:)
       end
     end
   end
