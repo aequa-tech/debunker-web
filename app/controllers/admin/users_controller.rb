@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
   class UsersController < AuthenticatedController
     include Pagy::Backend
 
     def index
-      @pagy, @users = pagy(User.all)
+      @pagy, @users = pagy(User.order(:id).all)
     end
 
     def edit
@@ -37,7 +39,7 @@ module Admin
     def user_params
       params.require(:user)
             .permit(
-              :role,
+              :role_id,
               api_keys_attributes: %i[
                 id
                 updated_at

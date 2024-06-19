@@ -1,0 +1,28 @@
+= render partial: 'shared/notices'
+
+.boxed
+  .boxed__title
+    h1 = t('admin.tiers.index.title')
+
+  table.my-table
+    thead
+      tr
+        th = Tier.human_attribute_name(:name)
+        th = Tier.human_attribute_name(:tokens_rate)
+        th = Tier.human_attribute_name(:reload_rate_period)
+        th = User.human_attribute_name(:created_at)
+        th = User.human_attribute_name(:updated_at)
+        th
+    tbody
+      - @tiers.each do |tier|
+        tr
+          td = tier.name
+          td = tier.tokens_rate
+          td = "#{tier.reload_rate_amount} #{t("time.#{tier.reload_rate_unit}")}"
+          td = l(tier.created_at, format: :short)
+          td = l(tier.updated_at, format: :short)
+          td
+    tfoot
+      tr
+        td colspan="7"
+          == pagy_nav(@pagy)

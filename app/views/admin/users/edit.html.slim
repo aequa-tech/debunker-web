@@ -8,7 +8,7 @@
   = form_for @user, url: admin_user_path(@user), method: :put do |f|
     .field
       = f.label :role
-      = f.select :role, User.roles.keys.map { |role| [role.humanize, role] }
+      = f.select :role_id, Role.all.map { |role| [role.name.humanize, role.id] }
 
     table.my-table
       = f.fields_for :api_keys, f.object.api_keys.active do |ff|
