@@ -17,8 +17,18 @@ it:
         password: Password
         password_confirmation: Conferma password
         remember_me: Ricordami
-        role: Privilegi
+        role: Ruolo
         updated_at: Aggiornato il
+      role:
+        name: Nome
+        tier: Tier
+        role_type: Tipo di ruolo
+      tier:
+        name: Nome
+        tokens_rate: Quantità di token
+        reload_rate_amount: Periodo di ricarica
+        reload_rate_unit: Unità di ricarica
+        reload_rate_period: Ricarica ogni
     errors:
       messages:
         record_invalid: "Il record non è valido"
@@ -52,6 +62,12 @@ it:
       user:
         one: Utente
         other: Utenti
+      role:
+        one: Ruolo
+        other: Ruoli
+      tier:
+        one: Tier
+        other: Tiers
   admin:
     api_keys:
       delete_confirm: Sei sicuro di voler revocare la chiave API?
@@ -67,6 +83,13 @@ it:
         created: Utente creato con successo
         deleted: Utente eliminato con successo
         updated: Utente aggiornato con successo
+    roles:
+      index:
+        title: Lista ruoli
+    tiers:
+      index:
+        title: Lista tiers
+
   devise:
     links:
       already_have_an_account: Hai già un account?
@@ -135,6 +158,8 @@ it:
     admin:
       title: Amministrazione
       users: Utenti
+      roles: Ruoli
+      tiers: Tiers
     dashboard: Dashboard
     profile:
       api_keys: Chiavi API
@@ -142,6 +167,12 @@ it:
       edit: Modifica profilo
       title: Profilo
   time:
+    day: giorno
+    days: giorni
+    week: settimana
+    weeks: settimane
+    month: mese
+    months: mesi
     formats:
       short: '%d/%m/%Y %H:%M'
   users:

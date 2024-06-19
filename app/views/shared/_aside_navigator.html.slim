@@ -18,6 +18,20 @@ aside.navigator
           .navigator-item__text
             = t('navigation.admin.users')
 
+      li.navigator-item
+        = link_to admin_roles_path do
+          .navigator-item__icon
+            = svg_tag "icons/roles.svg"
+          .navigator-item__text
+            = t('navigation.admin.roles')
+
+      li.navigator-item
+        = link_to admin_tiers_path do
+          .navigator-item__icon
+            = svg_tag "icons/tiers.svg"
+          .navigator-item__text
+            = t('navigation.admin.tiers')
+
     li.natigattor-item.navigator-item--label
       = t('navigation.profile.title')
 

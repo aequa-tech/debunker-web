@@ -1,0 +1,33 @@
+= render partial: 'shared/notices'
+
+.boxed
+  .boxed__title
+    h1 = t('admin.roles.index.title')
+
+  table.my-table
+    thead
+      tr
+        th = Role.human_attribute_name(:id)
+        th = Role.human_attribute_name(:name)
+        th = Role.human_attribute_name(:role_type)
+        th.text-center = Role.human_attribute_name(:tier)
+        th = User.human_attribute_name(:created_at)
+        th = User.human_attribute_name(:updated_at)
+        th
+    tbody
+      - @roles.each do |role|
+        tr
+          td = role.id
+          td = role.name
+          td = role.role_type
+          td.text-center
+            span.tier-name = role.tier.name
+            span.tier-reload-info
+              = "#{role.tier.tokens_rate} #{Token.model_name.human(count: 2)} / #{role.tier.reload_rate_amount} #{t("time.#{role.tier.reload_rate_unit}")}"
+          td = l(role.created_at, format: :short)
+          td = l(role.updated_at, format: :short)
+          td
+    tfoot
+      tr
+        td colspan="7"
+          == pagy_nav(@pagy)

@@ -19,6 +19,16 @@ it:
         remember_me: Remember Me
         role: Role
         updated_at: Updated At
+      role:
+        name: Name
+        tier: Tier
+        role_type: Role Type
+      tier:
+        name: Name
+        tokens_rate: Tokens Rate
+        reload_rate_amount: Reload Rate Amount
+        reload_rate_unit: Reload Rate Unit
+        reload_rate_period: Reload Rate Period
     errors:
       messages:
         record_invalid: "Record is invalid"
@@ -52,6 +62,12 @@ it:
       user:
         one: User
         other: Users
+      role:
+        one: Role
+        other: Roles
+      tier:
+        one: Tier
+        other: Tiers
   admin:
     api_keys:
       delete_confirm: Are you sure you want to revoke the API Key?
@@ -67,6 +83,12 @@ it:
         created: User created successfully
         deleted: User deleted successfully
         updated: User updated successfully
+    roles:
+      index:
+        title: Roles
+    tiers:
+      index:
+        title: Tiers
   devise:
     links:
       already_have_an_account: Already have an account?
@@ -135,6 +157,8 @@ it:
     admin:
       title: Administration
       users: Users
+      roles: Roles
+      tiers: Tiers
     dashboard: Dashboard
     profile:
       api_keys: API Keys
@@ -142,6 +166,12 @@ it:
       edit: Edit Profile
       title: Profile
   time:
+    day: day
+    days: days
+    week: week
+    weeks: weeks
+    month: month
+    months: months
     formats:
       short: '%m/%d/%Y %H:%M'
   users:

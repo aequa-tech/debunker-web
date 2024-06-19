@@ -31,6 +31,8 @@ Rails.application.routes.draw do
           delete 'revoke_api_key/:api_key_id', to: 'users#revoke_api_key', as: :revoke_api_key
         end
       end
+      resources :roles, only: %i[index]
+      resources :tiers, only: %i[index]
     end
   end
 end
