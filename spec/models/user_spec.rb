@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_many(:api_keys).dependent(:destroy) }
+    it { should belong_to(:role) }
   end
 
   describe 'validations' do

@@ -31,6 +31,7 @@ it:
         reload_rate_period: Reload Rate Period
     errors:
       messages:
+        required: required
         record_invalid: "Record is invalid"
       models:
         user:
