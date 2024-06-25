@@ -1,0 +1,41 @@
+version: '3'
+services:
+  debunker-web:
+    container_name: debunker-web
+    environment:
+      - RAILS_ENV=development
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    ports:
+     - '3000:3000'
+    volumes:
+      - .:/debunker-web
+    depends_on:
+      - database
+      - redis
+      - mailhog
+
+  database:
+    container_name: debunker-web-database
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  redis:
+    container_name: debunkwe-web-redis
+    image: redis
+
+  mailhog:
+    container_name: debunker-web-mailhog
+    image: jcalonso/mailhog
+    ports:
+      - "8025:8025"
+
+volumes:
+  database:

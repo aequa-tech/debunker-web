@@ -42,11 +42,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.asset_host = "http://localhost:3000"
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.asset_host = ENV.fetch("APPLICATION_HOST") { "http://localhost:3000" }
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") { "http://localhost:3000" } }
   config.action_mailer.smtp_settings = {
-    address: 'localhost',
-    port: 1025
+    address: ENV.fetch("SMTP_ADDRESS") { 'localhost' },
+    port: ENV.fetch("SMTP_PORT") { 1025 },
   }
 
   # Print deprecation notices to the Rails logger.
