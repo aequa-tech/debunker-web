@@ -9,6 +9,8 @@
       tr
         th = User.human_attribute_name(:id)
         th = User.human_attribute_name(:email)
+        th = User.human_attribute_name(:role)
+        th.text-center = Role.human_attribute_name(:tier)
         th = User.human_attribute_name(:created_at)
         th = User.human_attribute_name(:updated_at)
         th
@@ -17,6 +19,11 @@
         tr
           td = user.id
           td = user.email
+          td = user.role.name
+          td.text-center
+            span.tier-name = user.role.tier.name
+            span.tier-reload-info
+              = "#{user.role.tier.tokens_rate} #{Token.model_name.human(count: 2)} / #{user.role.tier.reload_rate_amount} #{t("time.#{user.role.tier.reload_rate_unit}")}"
           td = l(user.created_at, format: :short)
           td = l(user.updated_at, format: :short)
           td
@@ -29,5 +36,5 @@
                 = svg_tag 'icons/delete.svg'
     tfoot
       tr
-        td colspan="5"
+        td colspan="7"
           == pagy_nav(@pagy)

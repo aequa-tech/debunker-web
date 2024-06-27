@@ -6,18 +6,19 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
+    role { Role.find_by(name: 'Basic') || create(:role, :basic) }
 
     trait :admin do
-      role { 'admin' }
+      role { Role.find_by(name: 'Admin') || create(:role, :admin) }
     end
 
     trait :confirmed do
       confirmed_at { Time.current }
     end
 
-    trait :with_api_keys do
+    trait :with_api_key do
       after(:create) do |user|
-        create_list(:api_key, 2, user:)
+        create_list(:api_key, 1, user:)
       end
     end
   end

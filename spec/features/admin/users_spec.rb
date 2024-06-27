@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Admin edit users', type: :feature do
   let!(:admin) { create(:user, :admin, :confirmed) }
-  let!(:user) { create(:user, :with_api_keys) }
+  let!(:user) { create(:user, :with_api_key) }
 
   before do
     sign_in admin
@@ -77,12 +77,12 @@ RSpec.feature 'Admin edit users', type: :feature do
     end
 
     it 'can change user role' do
-      select('Admin', from: 'user_role')
+      select('Admin', from: 'user_role_id')
       click_on(I18n.t('admin.users.edit.update'))
       expect(page).to have_content(I18n.t('admin.users.notices.updated'))
 
       user.reload
-      expect(user.role).to eq('admin')
+      expect(user.role.name).to eq('Admin')
     end
 
     it 'show user api_keys with editable available tokens in form' do
