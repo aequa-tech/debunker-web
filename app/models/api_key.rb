@@ -3,7 +3,7 @@
 class ApiKey < ActiveRecord::Base
   before_create :encode_secret
   before_create :expire_all!
-  after_create :generate_free_call_tokens
+  after_create :generate_initial_call_tokens
   after_update :update_available_tokens_number
 
   belongs_to :user
@@ -63,41 +63,16 @@ class ApiKey < ActiveRecord::Base
 
   def update_available_tokens_number
     return unless @available_tokens_number
-    return if @available_tokens_number.to_i == available_tokens.count
 
-    if @available_tokens_number.to_i > available_tokens.count
-      add_tokens
-    else
-      remove_tokens
-    end
+    TokenReloader.new(self, force_tokens_rate: @available_tokens_number)
+                 .reload_tokens(update_reloaded_at: false)
   end
 
-  def add_tokens
-    token_to_generate = @available_tokens_number.to_i - available_tokens.count
-    generate_call_tokens(token_to_generate)
-  end
-
-  def remove_tokens
-    token_to_destroy = available_tokens.count - @available_tokens_number.to_i
-    available_tokens.last(token_to_destroy).each(&:destroy)
-  end
-
-  def generate_call_tokens(count)
-    count.times do
-      token_created = false
-      until token_created
-        token = SecureRandom.hex(16)
-        token_created = tokens.create(value: token)
-      end
-    end
-  end
-
-  def generate_free_call_tokens
-    free = ENV.fetch('FREE_TOKENS_REGISTRATION').to_i
-    generate_call_tokens(free)
+  def generate_initial_call_tokens
+    TokenReloader.new(self).reload_tokens
   end
 
   def expire_all!
-    self.class.where(user_id:).update_all(expired_at: Time.now)
+    self.class.where(user_id:).each(&:expire!)
   end
 end
