@@ -2,6 +2,7 @@
 
 class ApiKey < ActiveRecord::Base
   before_create :encode_secret
+  before_create :expire_all!
   after_create :generate_free_call_tokens
   after_update :update_available_tokens_number
 
