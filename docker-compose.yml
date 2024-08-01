@@ -16,6 +16,25 @@ services:
       - redis
       - mailhog
 
+  sidekiq:
+    container_name: debunker-web-sidekiq
+    environment:
+       - RAILS_ENV=development
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    ports:
+     - '3007:3000'
+    volumes:
+      - .:/debunker-web
+    depends_on:
+      - redis
+
+  redis:
+    container_name: debunkwe-web-redis
+    image: redis
+
   database:
     container_name: debunker-web-database
     image: postgres
@@ -26,10 +45,6 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - database:/var/lib/postgresql/data
-
-  redis:
-    container_name: debunkwe-web-redis
-    image: redis
 
   mailhog:
     container_name: debunker-web-mailhog
