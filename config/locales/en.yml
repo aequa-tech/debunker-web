@@ -98,6 +98,8 @@ it:
       confirm_cancel_account: Are you sure you want to cancel your account?
       forgot_your_password: Forgot your password?
       no_account_yet: Don't have an account yet?
+      confirmation_not_received: Didn't receive the confirmation email?
+      confirmations_ask: Request another confirmation email
       sign_in: Sign In
       sign_out: Sign Out
       sign_up: Sign Up
@@ -126,6 +128,11 @@ it:
         submit: Sign In
         subtitle: Enter your credentials to sign in
         title: Sign In
+    confirmations:
+      new:
+        submit: Request confirmation email
+        subtitle: Enter your email to receive instructions to confirm your account
+        title: Confirm your account
     mailer:
       confirmation_instructions:
         subject: "Confirm Your Account"
