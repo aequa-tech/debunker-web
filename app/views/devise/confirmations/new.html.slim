@@ -1,0 +1,21 @@
+.centered-section
+  .auth-form
+    .auth-form__title
+      h1 = 'Debunker Assistant'
+      .text
+        = t('devise.confirmations.new.subtitle')
+
+    = render partial: 'shared/notices', locals: { resource: }
+
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: false, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+
+      .actions
+        = f.submit t('devise.confirmations.new.submit'), class: "button-primary"
+
+      .columns.j-center
+        .text.me-3
+          = t('devise.links.already_have_an_account')
+        = link_to t('devise.links.sign_in'), new_session_path(resource_name)

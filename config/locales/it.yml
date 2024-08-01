@@ -99,6 +99,8 @@ it:
       confirm_cancel_account: Sei sicuro di voler cancellare il tuo account?
       forgot_your_password: Hai dimenticato la password?
       no_account_yet: Non hai ancora un account?
+      confirmation_not_received: Non hai ricevuto l'email di conferma?
+      confirmations_ask: Richiedi un'altra email di conferma
       sign_in: Accedi
       sign_out: Esci
       sign_up: Registrati
@@ -127,6 +129,11 @@ it:
         submit: Accedi
         subtitle: Inserisci le tue credenziali per accedere
         title: Accedi
+    confirmations:
+      new:
+        submit: Richiedi la mail di conferma
+        subtitle: Inserisci la tua email per ricevere le istruzioni per confermare il tuo account
+        title: Conferma il tuo account
     mailer:
       confirmation_instructions:
         subject: "Conferma il tuo account"
