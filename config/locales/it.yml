@@ -21,7 +21,7 @@ it:
         updated_at: Aggiornato il
       role:
         name: Nome
-        tier: Tier
+        tier: Piano
         role_type: Tipo di ruolo
       tier:
         name: Nome
@@ -67,8 +67,8 @@ it:
         one: Ruolo
         other: Ruoli
       tier:
-        one: Tier
-        other: Tiers
+        one: Piano
+        other: Piani
   admin:
     api_keys:
       delete_confirm: Sei sicuro di voler revocare la chiave API?
@@ -89,7 +89,7 @@ it:
         title: Lista ruoli
     tiers:
       index:
-        title: Lista tiers
+        title: Lista piani
 
   devise:
     links:
@@ -160,7 +160,7 @@ it:
       title: Amministrazione
       users: Utenti
       roles: Ruoli
-      tiers: Tiers
+      tiers: Piani
     dashboard: Dashboard
     profile:
       api_keys: Chiavi API
