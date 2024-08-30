@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     resources :api_keys, only: %i[index create destroy]
   end
 
+  namespace :debunk do
+    root '/debunk#index'
+    get '*path', to: '/debunk#index'
+  end
+
   # Backend section
   authenticate :user, ->(u) { u.admin? } do
     namespace :admin do

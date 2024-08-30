@@ -91,3 +91,6 @@ group :test do
 end
 
 gem 'devise', '~> 4.9'
+
+gem 'lograge'
+gem "logstash-event" # Required by the referred lograge formatter
