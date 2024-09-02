@@ -1,11 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import App from './src/components/App';
+import { CableProvider } from './src/context/cable';
+import './src/assets/stylesheets/style.css';
 
 const DebunkerReactApp = () => {
   return (
-    <App />
+    <CableProvider>
+      <App />
+    </CableProvider>
   );
 }
 
