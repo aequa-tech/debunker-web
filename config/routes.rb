@@ -26,6 +26,13 @@ Rails.application.routes.draw do
     get '*path', to: '/debunk#index'
   end
 
+  namespace :api do
+    namespace :v1 do
+      post 'evaluation', to: 'callback#evaluation_callback'
+      post 'explanations', to: 'callback#explanations_callback'
+    end
+  end
+
   # Backend section
   authenticate :user, ->(u) { u.admin? } do
     namespace :admin do
