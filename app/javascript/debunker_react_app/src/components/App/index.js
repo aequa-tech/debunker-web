@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import ClickbaitChart from '../ClickbaitChart';
 import { CableContext } from '../../context/cable';
 
-import '../../assets/stylesheets/app/style.css';
+import '../../assets/stylesheets/App/style.css';
 
 const App = () => {
   const [inputUrl, setInputUrl] = useState('');
