@@ -107,7 +107,7 @@ Rails.application.configure do
   }
 
   config.action_cable.mount_path = "/cable"
-  config.action_cable.url = "ws://#{ENV.fetch("APPLICATION_HOST", '').gsub('https://', '').gsub('http://', '')}/cable"
+  config.action_cable.url = "wss://#{ENV.fetch("APPLICATION_HOST", '').gsub('https://', '').gsub('http://', '')}/cable"
   config.action_cable.allowed_request_origins = [ ENV.fetch("APPLICATION_HOST", '') ]
 
   # Lograge
