@@ -16,6 +16,7 @@ module DebunkerWeb
       Dotenv.load(Rails.root.join('.docker.env'))
     end
 
+    config.hosts << ENV['APPLICATION_HOST'].to_s.gsub('http://', '').gsub('https://', '') if ENV['APPLICATION_HOST'].present?
     config.hosts << 'debunker-api.isunder.review'
 
     # Configuration for the application, engines, and railties goes here.
