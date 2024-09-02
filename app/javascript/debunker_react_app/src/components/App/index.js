@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
-import './App.css';
-import ClickbaitChart from './ClickbaitChart.js';
+import React, { useState, useEffect, useContext } from 'react';
+import ClickbaitChart from '../ClickbaitChart';
+import { CableContext } from '../../context/cable';
 
-function App() {
+import '../../assets/stylesheets/app/style.css';
+
+const App = () => {
   const [inputUrl, setInputUrl] = useState('');
   const [requestId, setRequestId] = useState('');
   const [evaluationResult, setEvaluationResult] = useState(null);
   const [title, setTitle] = useState(null);
   const [clickBaitScore, setClickBaitScore] = useState(null);
   const [loading, setLoading] = useState(false);
+  const cableContext = useContext(CableContext)
+
+  useEffect(() => {
+    const callbackChannel = cableContext.cable.subscriptions.create({
+      channel: 'CallbackChannel',
+    },{
+      connected: () => callbackChannel.send({ type: 'configuration::get' }),
+      received: (data) => console.log(data)
+    });
+  }, []);
 
   const handleInputChange = (event) => {
     setInputUrl(event.target.value);
@@ -58,11 +70,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Trying out APIs</h1>
-        <input 
-          type="text" 
-          value={inputUrl} 
-          onChange={handleInputChange} 
-          placeholder="Enter URL" 
+        <input
+          type="text"
+          value={inputUrl}
+          onChange={handleInputChange}
+          placeholder="Enter URL"
         />
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? 'Loading...' : 'Submit'}

@@ -16,6 +16,8 @@ module DebunkerWeb
       Dotenv.load(Rails.root.join('.docker.env'))
     end
 
+    config.hosts << 'debunker-api.isunder.review'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
