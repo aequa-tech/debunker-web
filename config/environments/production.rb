@@ -106,6 +106,10 @@ Rails.application.configure do
     password: ENV.fetch('SMTP_PASSWORD')
   }
 
+  config.action_cable.mount_path = "/cable"
+  config.action_cable.url = "ws://#{ENV.fetch("APPLICATION_HOST", '').gsub('https://', '').gsub('http://', '')}/cable"
+  config.action_cable.allowed_request_origins = [ ENV.fetch("APPLICATION_HOST", '') ]
+
   # Lograge
   config.lograge.enabled = true
   config.lograge.keep_original_rails_log = true

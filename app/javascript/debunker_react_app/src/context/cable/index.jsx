@@ -4,7 +4,7 @@ import ActionCable from 'actioncable';
 const CableContext = React.createContext();
 
 const CableProvider = ({ children }) => {
-  const actionCableUrl = 'ws://localhost:3000/cable';
+  const actionCableUrl = 'ws://debunker-web.isunder.review/cable';
   const CableApp = {};
 
   CableApp.cable = ActionCable.createConsumer(actionCableUrl);
