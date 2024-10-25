@@ -14,7 +14,17 @@ module Admin
 
     def update
       @user = User.find(params[:id])
-      if @user.update(user_params)
+      @api_key = @user.api_keys.find_by(id: user_params[:api_keys_attributes]['0'][:id])
+      @available_tokens_number = user_params[:api_keys_attributes]['0'][:available_tokens_number].to_i
+
+      reloader = TokenReloader.new(@api_key)
+      if @available_tokens_number > @api_key.available_tokens.count
+        (@available_tokens_number - @api_key.available_tokens.count).times { reloader.regenerate_single_token }
+      elsif @available_tokens_number < @api_key.available_tokens.count
+        (@api_key.available_tokens.count - @available_tokens_number).times { @api_key.available_tokens.last.destroy }
+      end
+
+      if @api_key.available_tokens.count == @available_tokens_number && @user.update(role_id: user_params[:role_id])
         redirect_to admin_users_path, notice: I18n.t('admin.users.notices.updated')
       else
         render :edit, status: :unprocessable_entity
@@ -42,7 +52,6 @@ module Admin
               :role_id,
               api_keys_attributes: %i[
                 id
-                updated_at
                 available_tokens_number
               ]
             )

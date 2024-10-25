@@ -13,7 +13,8 @@ it:
         current_password: Password attuale
         email: Email
         id: ID
-        name: Nome
+        first_name: Nome
+        last_name: Cognome
         password: Password
         password_confirmation: Conferma password
         remember_me: Ricordami
@@ -42,6 +43,7 @@ it:
             password:
               blank: "non può essere vuota"
               too_short: "deve contenere almeno %{count} caratteri"
+              too_weak: "La password è troppo debole. Utilizza almeno 1 lettera maiuscola, 1 lettera minuscola, 1 cifra e 1 carattere speciale"
             password_confirmation:
               blank: "non può essere vuota"
               confirmation: "non corrisponde alla password"
@@ -51,7 +53,9 @@ it:
             reset_password_token:
               invalid: "non è valido"
               blank: "non può essere vuoto"
-            name:
+            first_name:
+              blank: "non può essere vuoto"
+            last_name:
               blank: "non può essere vuoto"
     models:
       api_key:

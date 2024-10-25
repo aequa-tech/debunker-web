@@ -67,7 +67,7 @@ RSpec.feature 'Admin edit users', type: :feature do
 
     it 'show user top resume info' do
       within('.top-resume--user-info') do
-        expect(page).to have_content(user.name.upcase)
+        expect(page).to have_content(user.first_name.upcase)
         expect(page).to have_content(user.email)
       end
     end
@@ -98,7 +98,7 @@ RSpec.feature 'Admin edit users', type: :feature do
     it 'can change user api_keys available tokens' do
       within('form') do
         user.api_keys.active.each_with_index do |_api_key, index|
-          fill_in("user[api_keys_attributes][#{index}][available_tokens_number]", with: 15)
+          fill_in("user[api_keys_attributes][#{index}][available_tokens_number]", with: 9)
         end
         click_on(I18n.t('admin.users.edit.update'))
       end
@@ -106,7 +106,7 @@ RSpec.feature 'Admin edit users', type: :feature do
       expect(page).to have_content(I18n.t('admin.users.notices.updated'))
       user.reload
       user.api_keys.active.each do |api_key|
-        expect(api_key.available_tokens.count).to eq(15)
+        expect(api_key.available_tokens.count).to eq(9)
       end
     end
 

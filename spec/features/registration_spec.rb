@@ -23,7 +23,8 @@ RSpec.describe 'User registration', type: :feature do
         visit new_user_registration_path
 
         within('form') do
-          fill_in 'user_name', with: user.name
+          fill_in 'user_first_name', with: user.first_name
+          fill_in 'user_last_name', with: user.first_name
           fill_in 'user_email', with: user.email
           fill_in 'user_password', with: user.password
           fill_in 'user_password_confirmation', with: user.password
@@ -64,7 +65,8 @@ RSpec.describe 'User registration', type: :feature do
         visit new_user_registration_path
 
         within('form') do
-          fill_in 'user_name', with: user.name
+          fill_in 'user_first_name', with: user.first_name
+          fill_in 'user_last_name', with: user.last_name
           fill_in 'user_email', with: user.email
           fill_in 'user_password', with: user.password
           fill_in 'user_password_confirmation', with: user.password
@@ -72,10 +74,17 @@ RSpec.describe 'User registration', type: :feature do
       end
 
       it 'fail with blank name' do
-        fill_in 'user_name', with: ''
+        fill_in 'user_first_name', with: ''
         within('form') { click_on I18n.t('devise.links.sign_up') }
 
-        expect(page).to have_css('.notices .notice__text', text: "#{User.human_attribute_name(:name)} #{I18n.t('activerecord.errors.models.user.attributes.name.blank')}")
+        expect(page).to have_css('.notices .notice__text', text: "#{User.human_attribute_name(:first_name)} #{I18n.t('activerecord.errors.models.user.attributes.first_name.blank')}")
+      end
+
+      it 'fail with blank surname' do
+        fill_in 'user_last_name', with: ''
+        within('form') { click_on I18n.t('devise.links.sign_up') }
+
+        expect(page).to have_css('.notices .notice__text', text: "#{User.human_attribute_name(:last_name)} #{I18n.t('activerecord.errors.models.user.attributes.last_name.blank')}")
       end
 
       it 'fail with blank email' do
@@ -99,6 +108,13 @@ RSpec.describe 'User registration', type: :feature do
         expect(page).to have_css('.notices .notice__text', text: "#{User.human_attribute_name(:password)} #{I18n.t('activerecord.errors.models.user.attributes.password.too_short', count: Devise.password_length.min)}")
       end
 
+      it 'fail with password too weak' do
+        fill_in 'user_password', with: 'test1234'
+        within('form') { click_on I18n.t('devise.links.sign_up') }
+
+        expect(page).to have_css('.notices .notice__text', text: "#{User.human_attribute_name(:password)} #{I18n.t('activerecord.errors.models.user.attributes.password.too_weak', count: Devise.password_length.min)}")
+      end
+
       it 'fail with blank password confirmation' do
         fill_in 'user_password_confirmation', with: ''
         within('form') { click_on I18n.t('devise.links.sign_up') }
@@ -114,7 +130,7 @@ RSpec.describe 'User registration', type: :feature do
       end
 
       it 'does not send confirmation email' do
-        fill_in 'user_name', with: ''
+        fill_in 'user_first_name', with: ''
         within('form') { click_on I18n.t('devise.links.sign_up') }
 
         expect(ActionMailer::Base.deliveries.count).to eq(0)

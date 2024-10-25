@@ -11,6 +11,11 @@ RSpec.describe 'User API keys', type: :feature do
   end
 
   context 'when user has no data about api_keys' do
+    before do
+      user.api_keys.destroy_all
+      visit users_api_keys_path
+    end
+
     it 'show empty state' do
       expect(page).to have_content(I18n.t('empty_state.title'))
       expect(page).to have_content(I18n.t('users.api_keys.empty_state'))
@@ -34,9 +39,9 @@ RSpec.describe 'User API keys', type: :feature do
 
       it 'show api_key data' do
         within('.top-resume--api-key.top-resume--success') do
-          expect(page).to have_content(user.api_keys.last.access_token)
-          expect(page).to have_content(JWT.decode(user.api_keys.last.secret_token,
-                                                  ApiKey.usk(user.api_keys.last.access_token, user)).first)
+          expect(page).to have_content(user.api_keys.active.last.access_token)
+          expect(page).to have_content(JWT.decode(user.api_keys.active.last.secret_token,
+                                                  ApiKey.usk(user.api_keys.active.last.access_token, user)).first)
         end
       end
 
@@ -52,6 +57,7 @@ RSpec.describe 'User API keys', type: :feature do
       end
 
       it 'show api_key in table' do
+        user.reload
         visit users_api_keys_path
         within('table') do
           expect(page).to have_text(user.api_keys.last.access_token)

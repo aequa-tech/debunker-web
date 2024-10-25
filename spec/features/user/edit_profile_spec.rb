@@ -27,16 +27,30 @@ RSpec.feature 'User edit profile', type: :feature do
 
   it 'can change user name' do
     new_name = 'New Name'
-    fill_in 'user_name', with: new_name
+    fill_in 'user_first_name', with: new_name
     click_on I18n.t('devise.registrations.edit.update')
     expect(page).to have_content(I18n.t('devise.registrations.updated'))
     expect(page).to have_content(new_name.upcase)
   end
 
-  it 'show error message when name is blank' do
-    fill_in 'user_name', with: ''
+  it 'can change surname' do
+    new_name = 'New Surname'
+    fill_in 'user_last_name', with: new_name
     click_on I18n.t('devise.registrations.edit.update')
-    expect(page).to have_content("#{User.human_attribute_name(:name)} #{I18n.t('activerecord.errors.models.user.attributes.name.blank')}")
+    expect(page).to have_content(I18n.t('devise.registrations.updated'))
+    expect(page).to have_content(new_name.upcase)
+  end
+
+  it 'show error message when first name is blank' do
+    fill_in 'user_first_name', with: ''
+    click_on I18n.t('devise.registrations.edit.update')
+    expect(page).to have_content("#{User.human_attribute_name(:first_name)} #{I18n.t('activerecord.errors.models.user.attributes.first_name.blank')}")
+  end
+
+  it 'show error message when last name is blank' do
+    fill_in 'user_last_name', with: ''
+    click_on I18n.t('devise.registrations.edit.update')
+    expect(page).to have_content("#{User.human_attribute_name(:last_name)} #{I18n.t('activerecord.errors.models.user.attributes.last_name.blank')}")
   end
 
   context 'when user cancel account' do

@@ -19,6 +19,7 @@ RSpec.describe 'User Dashboard', type: :feature do
 
       it 'click in dashboard link redirect to dashboard' do
         click_on 'Dashboard'
+        sleep 0.3
         expect(current_path).to eq user_root_path
       end
 
@@ -30,12 +31,16 @@ RSpec.describe 'User Dashboard', type: :feature do
       it 'show user-info' do
         visit user_root_path
         within('.top-resume--user-info') do
-          expect(page).to have_text(user.name.upcase)
+          expect(page).to have_text(user.first_name.upcase)
           expect(page).to have_text(user.email)
         end
       end
 
       context 'without api_keys' do
+        before do
+          user.api_keys.destroy_all
+        end
+
         it 'show info about no api_keys' do
           visit user_root_path
           within('.api-keys-container') do

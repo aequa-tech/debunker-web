@@ -13,7 +13,8 @@ it:
         current_password: Current Password
         email: Email
         id: ID
-        name: Name
+        first_name: Name
+        last_name: Surname
         password: Password
         password_confirmation: Password Confirmation
         remember_me: Remember Me
@@ -42,6 +43,7 @@ it:
             password:
               blank: "can't be blank"
               too_short: "is too short (minimum is %{count} characters)"
+              too_weak: "Password is too weak. Use at least 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character"
             password_confirmation:
               blank: "can't be blank"
               confirmation: "doesn't match Password"
@@ -51,7 +53,9 @@ it:
             reset_password_token:
               invalid: "is invalid"
               blank: "can't be blank"
-            name:
+            first_name:
+              blank: "can't be blank"
+            last_name:_name:
               blank: "can't be blank"
     models:
       api_key:

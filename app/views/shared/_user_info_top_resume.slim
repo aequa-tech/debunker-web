@@ -3,7 +3,7 @@
     .top-resume__icon
       = svg_tag 'icons/dashboard.svg'
 
-    h2.top-resume__title = user.name
+    h2.top-resume__title = user.first_name + ' ' + user.last_name
     p
       strong = User.human_attribute_name(:email)
       br

@@ -20,7 +20,7 @@ RSpec.feature 'User change password', type: :feature do
   end
 
   it 'can change password' do
-    new_password = 'new_password'
+    new_password = 'new$_P4ssword'
     fill_in 'user_password', with: new_password
     fill_in 'user_password_confirmation', with: new_password
     fill_in 'user_current_password', with: user.password
@@ -50,5 +50,13 @@ RSpec.feature 'User change password', type: :feature do
     fill_in 'user_current_password', with: user.password
     click_on I18n.t('devise.passwords.edit.submit')
     expect(page).to have_content(I18n.t('activerecord.errors.models.user.attributes.password_confirmation.confirmation'))
+  end
+
+  it 'show error if password too weak' do
+    fill_in 'user_password', with: 'new_password'
+    fill_in 'user_password_confirmation', with: 'new_password'
+    fill_in 'user_current_password', with: user.password
+    click_on I18n.t('devise.passwords.edit.submit')
+    expect(page).to have_content(I18n.t('activerecord.errors.models.user.attributes.password.too_weak'))
   end
 end

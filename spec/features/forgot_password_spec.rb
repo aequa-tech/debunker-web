@@ -76,8 +76,8 @@ RSpec.describe 'Forgot password', type: :feature do
         context 'when user reset password' do
           before do
             within('form') do
-              fill_in 'user_password', with: 'new_password'
-              fill_in 'user_password_confirmation', with: 'new_password'
+              fill_in 'user_password', with: 'n3w_P4ssw0rd!'
+              fill_in 'user_password_confirmation', with: 'n3w_P4ssw0rd!'
               click_on I18n.t('devise.passwords.edit.change')
             end
           end
@@ -93,7 +93,7 @@ RSpec.describe 'Forgot password', type: :feature do
 
             within('form') do
               fill_in 'user_email', with: user.email
-              fill_in 'user_password', with: 'new_password'
+              fill_in 'user_password', with: 'n3w_P4ssw0rd!'
               click_on I18n.t('devise.links.sign_in')
             end
 

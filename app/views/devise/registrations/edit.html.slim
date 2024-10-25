@@ -7,8 +7,12 @@
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .field
-        = f.label :name
-        = f.text_field :name, autofocus: true
+        = f.label :first_name
+        = f.text_field :first_name, autofocus: true
+
+      .field
+        = f.label :last_name
+        = f.text_field :last_name
 
       .actions
         = f.submit t('devise.registrations.edit.update'), class: "button-primary"
