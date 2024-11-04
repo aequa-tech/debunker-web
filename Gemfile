@@ -28,8 +28,6 @@ gem 'sentry-rails'
 gem 'dotenv-rails'
 gem 'overcommit', '~> 0.60.0'
 
-gem 'whenever', require: false
-
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'bundler-audit'
